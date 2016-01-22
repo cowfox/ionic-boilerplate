@@ -1,0 +1,19 @@
+# Xcode
+#
+# .gitignore file for "ionic" project.
+#
+# ----------------------
+
+## NPM packages
+node_modules/
+
+## Bower
+# Bower folder is defined in the file `www/lib`
+www/lib/
+
+## Cordova plugins
+plugins/
+
+## Platform
+platforms/
+
