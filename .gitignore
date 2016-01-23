@@ -17,3 +17,5 @@ plugins/
 ## Platform
 platforms/
 
+## Log file
+*.log
