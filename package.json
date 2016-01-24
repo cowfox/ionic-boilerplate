@@ -2,17 +2,31 @@
   "name": "ionic-boilerplate",
   "version": "0.0.6",
   "description": "Aproject boilerplate for starting development with Ionic framework.",
-  "author": {
-    "name": "Lei SHI",
-    "email": "foxshee@gmail.com",
-    "url": "http://5neo.be"
-  },
+  "keywords": [
+    "ionic",
+    "angular",
+    "gulp",
+    "browserify",
+    "sass",
+    "karma",
+    "jasmine",
+    "protractor",
+    "boilerplate"
+  ],
   "license": "MIT",
   "repository" : {
     "type" : "git",
     "url" : "ssh://git@stash.wuneo.co/starter/ionic-boilerplate.git"
   },
-
+  "author": {
+    "name": "Lei SHI",
+    "email": "foxshee@gmail.com",
+    "url": "http://5neo.be"
+  },
+  "engines": {
+    "node": "5,0,0",
+    "npm": "3.0.0"
+  },
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",

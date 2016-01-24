@@ -5,9 +5,6 @@
 
 'use strict';
 
-// Load Angular Module Processor
-var processor = require('../app.module.processor');
-
 function accountController($scope) {
 
     'ngInject';
@@ -19,6 +16,6 @@ function accountController($scope) {
 
 module.exports = {
     name: 'accountController',
-    type: processor.elementType.CONTROLLER,
+    type: "controller",
     func: accountController
 };

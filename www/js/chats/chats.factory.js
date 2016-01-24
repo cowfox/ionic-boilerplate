@@ -5,9 +5,6 @@
 
 'use strict';
 
-// Load Angular Module Processor
-var processor = require('../app.module.processor');
-
 function chatsFactory() {
 
     'ngInject';
@@ -62,7 +59,7 @@ function chatsFactory() {
 
 module.exports = {
     name: 'chatsFactory',
-    type: processor.elementType.FACTORY,
+    type: "factory",
     func: chatsFactory
 };
 

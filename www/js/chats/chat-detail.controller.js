@@ -5,9 +5,6 @@
 
 'use strict';
 
-// Load Angular Module Processor
-var processor = require('../app.module.processor');
-
 function chatDetailController($scope, $stateParams, chatsFactory) {
 
     'ngInject';
@@ -17,6 +14,6 @@ function chatDetailController($scope, $stateParams, chatsFactory) {
 
 module.exports = {
     name: 'chatDetailController',
-    type: processor.elementType.CONTROLLER,
+    type: "controller",
     func: chatDetailController
 };

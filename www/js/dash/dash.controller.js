@@ -5,9 +5,6 @@
 
 'use strict';
 
-// Load Angular Module Processor
-var processor = require('../app.module.processor');
-
 function dashController($scope) {
 
     'ngInject';
@@ -16,6 +13,6 @@ function dashController($scope) {
 
 module.exports = {
     name: 'dashController',
-    type: processor.elementType.CONTROLLER,
+    type: "controller",
     func: dashController
 };

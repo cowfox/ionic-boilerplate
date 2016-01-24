@@ -42,11 +42,11 @@
  *
  */
 var elementType = {
-    CONTROLLER: 0,
-    SERVICE: 1,
-    FACTORY: 2,
-    DIRECTIVE: 3,
-    FILTER: 4
+    CONTROLLER: "controller",
+    SERVICE: "service",
+    FACTORY: "factory",
+    DIRECTIVE: "directoy",
+    FILTER: "filter"
 };
 
 /**
