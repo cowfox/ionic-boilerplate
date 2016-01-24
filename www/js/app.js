@@ -6,7 +6,7 @@
 'use strict';
 
 // General `requires`
-require("angular");
+var angular = require("angular");
 require("ionic");
 
 // App `basic` modules

@@ -11,6 +11,7 @@
  */
 
 // Define your `project module`
+var angular = require('angular');
 var accountModule = angular.module('app.account',
     []
 );

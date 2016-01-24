@@ -11,6 +11,7 @@
  */
 
 // Define your `project module`
+var angular = require('angular');
 var dashModule = angular.module('app.dash',
     []
 );

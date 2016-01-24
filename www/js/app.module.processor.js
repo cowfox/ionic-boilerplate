@@ -57,8 +57,6 @@ var elementType = {
  */
 function angularModuleProcessor(angularModule, angularElements) {
 
-    var bulk = require('bulk-require');
-
     if (!angularModule) {
         error('The parameter "angularModule" cannot be NULL. ');
     }
@@ -79,8 +77,15 @@ module.exports = {
  */
 function declare(module, elementsMap) {
 
-    angular.forEach(elementsMap, function(element, key) {
+    var key;
 
+    for(key in elementsMap) {
+
+        if (! elementsMap.hasOwnProperty(key)) {
+            return;
+        }
+
+        var element = elementsMap[key];
         if (!element || typeof element !== 'object') {
             return;
         }
@@ -105,8 +110,9 @@ function declare(module, elementsMap) {
             }
         } else {
             // Not any Angular type we are looking for....
+            return;
         }
-    });
+    }
 
 }
 
