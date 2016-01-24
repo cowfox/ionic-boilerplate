@@ -3,7 +3,15 @@
  * @date 1/23/16
  */
 
-appModule.factory('Chats', function() {
+'use strict';
+
+// Load Angular Module Processor
+var processor = require('../app.module.processor');
+
+function chatsFactory() {
+
+    'ngInject';
+
     // Might use a resource here that returns a JSON array
 
     // Some fake testing data
@@ -50,4 +58,12 @@ appModule.factory('Chats', function() {
             return null;
         }
     };
-});
+}
+
+module.exports = {
+    name: 'chatsFactory',
+    type: processor.elementType.FACTORY,
+    func: chatsFactory
+};
+
+

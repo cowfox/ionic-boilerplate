@@ -7,6 +7,7 @@
   "watchPatterns": [
   	"./scss/**/*.scss",
   	"./www/js/**/*.js",
-  	"./www/build/index.html"
+  	"!./www/js/bundles/**/*.js",
+  	"./www/index.html"
   ]
 }

@@ -8,14 +8,15 @@
 // Load Angular Module Processor
 var processor = require('../app.module.processor');
 
-function dashController($scope) {
+function chatDetailController($scope, $stateParams, chatsFactory) {
 
     'ngInject';
 
+    $scope.chat = chatsFactory.get($stateParams.chatId);
 }
 
 module.exports = {
-    name: 'dashController',
+    name: 'chatDetailController',
     type: processor.elementType.CONTROLLER,
-    func: dashController
+    func: chatDetailController
 };

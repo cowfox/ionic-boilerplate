@@ -3,8 +3,14 @@
  * @date 1/23/16
  */
 
+'use strict';
 
-appModule.controller('ChatsCtrl', function($scope, Chats) {
+// Load Angular Module Processor
+var processor = require('../app.module.processor');
+
+function chatsController($scope, chatsFactory) {
+
+    'ngInject';
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -14,8 +20,14 @@ appModule.controller('ChatsCtrl', function($scope, Chats) {
     //$scope.$on('$ionicView.enter', function(e) {
     //});
 
-    $scope.chats = Chats.all();
+    $scope.chats = chatsFactory.all();
     $scope.remove = function(chat) {
-        Chats.remove(chat);
+        chatsFactory.remove(chat);
     };
-});
+}
+
+module.exports = {
+    name: 'chatsController',
+    type: processor.elementType.CONTROLLER,
+    func: chatsController
+};

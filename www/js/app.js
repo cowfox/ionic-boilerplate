@@ -1,26 +1,39 @@
-// Ionic Starter App
+/**
+ * @created Lei)Leo) SHI <foxshee@gmail.com>
+ * @date 1/23/16
+ */
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-var appModule = angular.module('starter', ['ionic']);
+'use strict';
 
-appModule.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+// General `requires`
+require("angular");
+require("ionic");
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-});
+// App `basic` modules
+var appConstants = require('./app.constant');
+var appConfig = require('./app.config');
+var appRouter = require('./app.router');
+var appRun = require('./app.run');
 
+// App `functional` modules
+require('./dash/dash.module');
+require('./chats/chats.module');
+require('./account/account.module');
 
+// create and bootstrap application
+var app_requires = [
+    'ionic',
+
+    // App funcitonal modules
+    'app.dash',
+    'app.chats',
+    'app.account'
+];
+var appModule = angular.module('ionicBoilerplate', app_requires);
+
+appModule.run(appRun);
+appModule.config(appConstants);
+appModule.config(appRouter);
+appModule.config(appConfig);
+
+module.exports = appModule;

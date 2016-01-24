@@ -19,3 +19,6 @@ platforms/
 
 ## Log file
 *.log
+
+## Generated files
+bundles/

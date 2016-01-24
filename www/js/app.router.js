@@ -3,11 +3,11 @@
  * @date 1/23/16
  */
 
+'use strict';
 
-/**
- *
- */
-appModule.config(function($stateProvider, $urlRouterProvider) {
+function onRouter($stateProvider, $urlRouterProvider) {
+
+    'ngInject';
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -19,7 +19,7 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
         .state('tab', {
             url: '/tab',
             abstract: true,
-            templateUrl: 'templates/tabs.html'
+            templateUrl: 'js/common/templates/tabs.html'
         })
 
         // Each tab has its own nav history stack:
@@ -28,8 +28,8 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
             url: '/dash',
             views: {
                 'tab-dash': {
-                    templateUrl: 'templates/dash/tab-dash.html',
-                    controller: 'DashCtrl'
+                    templateUrl: 'js/dash/templates/tab-dash.html',
+                    controller: 'dashController'
                 }
             }
         })
@@ -38,8 +38,8 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
             url: '/chats',
             views: {
                 'tab-chats': {
-                    templateUrl: 'templates/chats/tab-chats.html',
-                    controller: 'ChatsCtrl'
+                    templateUrl: 'js/chats/templates/tab-chats.html',
+                    controller: 'chatsController'
                 }
             }
         })
@@ -47,8 +47,8 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
             url: '/chats/:chatId',
             views: {
                 'tab-chats': {
-                    templateUrl: 'templates/chat-detail/chat-detail.html',
-                    controller: 'ChatDetailCtrl'
+                    templateUrl: 'js/chats/templates/chat-detail.html',
+                    controller: 'chatDetailController'
                 }
             }
         })
@@ -57,8 +57,8 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
             url: '/account',
             views: {
                 'tab-account': {
-                    templateUrl: 'templates/account/tab-account.html',
-                    controller: 'AccountCtrl'
+                    templateUrl: 'js/account/templates/tab-account.html',
+                    controller: 'accountController'
                 }
             }
         });
@@ -66,4 +66,6 @@ appModule.config(function($stateProvider, $urlRouterProvider) {
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
 
-});
+};
+
+module.exports = onRouter;
