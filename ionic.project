@@ -1,6 +1,9 @@
 {
   "name": "ionic-boilerplate",
   "app_id": "",
+  "gulpDependantTasks": [
+    "default"
+  ],
   "gulpStartupTasks": [
   	"watch"
   ],
@@ -8,6 +11,6 @@
   	"./scss/**/*.scss",
   	"./www/js/**/*.js",
   	"!./www/js/bundles/**/*.js",
-  	"./www/index.html"
+  	"./www/**/*.html"
   ]
 }
