@@ -22,7 +22,7 @@ var bulk = require('bulk-require');
 //
 // For now, `bulk` does not support a variable as the `paths`, since when doing `buuikify` on `browserify`, it will be
 // ignored.
-var angularElements = bulk(__dirname, ['./**/!(*.module|*.spec).js']);
+var angularElements = bulk(__dirname, ['./**/!(*.module|*.unit|*.spec).js']);
 
 // Load Angular Module Processor
 var processor = require('../app.module.processor');
