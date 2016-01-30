@@ -44,7 +44,7 @@
     gulp.task(taskName, function() {
 
         return processCssFiles(
-            pathBuilder.buildPathArrayFromBase(config.getVendorPath(), config.styles.vendorCssPath),
+            pathBuilder.buildPathArrayFromBase(config.getVendorPath(), config.styles.vendorCssFilePaths),
             config.styles.vendorCssFile,
             cli.solveTargetFolderPath(config.styles.styleFolderPath)
         );

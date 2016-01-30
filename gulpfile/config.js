@@ -66,16 +66,52 @@
                 compatibility: 'ie8'
             },
             // The "relative" path to "root path" of vendor folder.
-            vendorCssPath: [
+            vendorCssFilePaths: [
                 'ionic/css/ionic.css'
             ]
         },
 
+        //----------------------------------------------------------
+        // Scripts
+        //----------------------------------------------------------
+
+        scripts: {
+            scriptFolderPath: "./scripts",
+            // The path array to the JS files that needs to be screened.
+            lintFilePaths: [
+                './**/*.js'
+            ],
+            // By default, it uses `jshint-stylish`.
+            // If `true`, it uses `gulp-jshint-html-reporter`.
+            // Make sure the related **Gulp Plugin** is installed.
+            useLintHTMLReporter: true,
+            lintHTMLOutputFilename: './jshint-output.html', // Under "base dir".
+            // If need to also do code screening on Gulp Tasks files.
+            needLintGulpTaskFiles: true,
+            gulpFilePath: "./gulpfile/**/*.js",
+            src: [
+                '!www/js/bundles/**/*',
+                'www/js/**/*.js'
+            ]
+        },
 
 
         //----------------------------------------------------------
         // Helper Functions
         //----------------------------------------------------------
+
+        /**
+         * Get path for "base".
+         *
+         * @param additionalPath (optional) An extra path.
+         * @returns {*} The path of "base". If `additionalPath` is available, it returns the "combined' version.
+         */
+        getBasePath: function(additionalPath) {
+            if (additionalPath !== undefined) {
+                return path.join(this.root.base, additionalPath);
+            }
+            return path.join(this.root.base);
+        },
 
         /**
          * Get path for "app".
@@ -144,14 +180,6 @@
         baseDir: path.join(__dirname,  '../'),  // Project Root
         devSrcDir: '.tmp',
         buikdSrcDir: 'www',
-
-        // Scripts
-        scripts: {
-            src: [
-                '!www/js/bundles/**/*',
-                'www/js/**/*.js'
-            ]
-        },
 
         // Env. (development | production)
         inProd : false,
