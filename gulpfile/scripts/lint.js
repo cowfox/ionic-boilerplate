@@ -49,7 +49,7 @@
     //----------------------------------------------------------
 
     /**
-     * Do code screening based on given file paths.
+     * Do scripts screening based on given file paths.
      *
      * @param scriptFilePaths The path array to the files to be screened.
      * @returns {*}
@@ -57,13 +57,13 @@
     function lintScriptFiles(scriptFilePaths) {
 
         if (config.scripts.useLintHTMLReporter) {
-            var lintReporter = require('gulp-jshint-html-reporter');
+            var lintHTMLReporter = require('gulp-jshint-html-reporter');
             var outputPath = config.getBasePath(config.scripts.lintHTMLOutputFilename);
 
             gutil.log("JSHint Report outputs to", outputPath);
             return gulp.src(scriptFilePaths)
                 .pipe(jshint())
-                .pipe(jshint.reporter(lintReporter, {
+                .pipe(jshint.reporter(lintHTMLReporter, {
                     filename: outputPath,
                     createMissingFolders : false
                 }));

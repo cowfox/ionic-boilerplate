@@ -2,6 +2,7 @@
 
 var gulp                = require('gulp');
 var gulpif              = require('gulp-if');
+
 var streamify           = require('gulp-streamify');
 var uglify              = require('gulp-uglify');
 var sourcemaps          = require('gulp-sourcemaps');
@@ -15,6 +16,18 @@ var watchify            = require('watchify');
 
 var config              = require('../config');
 var handleErr           = require('../util/handleErr');
+
+//----------------------------------------------------------
+// Gulp Taska
+//----------------------------------------------------------
+
+gulp.task('browserify', function() {
+    return buildScript(config.browserify.entries);
+});
+
+//----------------------------------------------------------
+// Internal Fucntions
+//----------------------------------------------------------
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file) {
@@ -70,9 +83,3 @@ function buildScript(file) {
     return rebundle();
 
 }
-
-gulp.task('browserify', function() {
-
-    return buildScript(config.browserify.entries);
-
-});
