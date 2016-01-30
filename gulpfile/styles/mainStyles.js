@@ -1,6 +1,10 @@
 /***********************************************************
  * ### Gulp task for "style" files ###
  *
+ * The CSS files of project is done and managed by "SASS", in "app"'s folder.
+ * When processing, a "single" main entry is provided (usually `main.scss`).
+ *
+ * All "Vendor's" CSS file is processed by another task.
  *
  ***********************************************************/
 
@@ -24,9 +28,10 @@
     var config                  = require('../config');
     var cli                     = require('../cli');
     var handleErr               = require('../util/handleErr');
+    var pathBuilder             = require('../util/pathBuilder');
 
     // Gulp task name
-    var taskName = "styles";
+    var taskName = "styles-main";
 
     //----------------------------------------------------------
     // GUlp Tasks
@@ -42,24 +47,26 @@
         );
     });
 
+
+
     //----------------------------------------------------------
     // Internal Functions
     //----------------------------------------------------------
 
     /**
-     * Process the "style" files based on "diff. running mode".
+     * Process the "style" files (Sass) based on "diff. running mode".
      *
-     * @param mainSassFilePath The path of main Sass entry file.
-     * @param mainCssFilename The filename of target CSS file to be generated.
+     * @param inputMainSassFilePaths The path of "input" main Sass entry file.
+     * @param outputCssFilename The filename of target "output" CSS file to be generated.
      * @param targetFolderPath The path of the target CSS file.
      * @returns {*}
      */
-    function processStyleFiles(mainSassFilePath, mainCssFilename, targetFolderPath) {
+    function processStyleFiles(inputMainSassFilePaths, outputCssFilename, targetFolderPath) {
 
         // Decide if need to "compress" the styles file.
-        var sassOptions = cli.inBuild ? { style: 'compressed' } : { style: 'expanded' };
+        var sassOptions = cli.requiredBuild ? { style: 'compressed' } : { style: 'expanded' };
 
-        var sassStream = gulp.src(mainSassFilePath)
+        var sassStream = gulp.src(inputMainSassFilePaths)
             .pipe(sass(sassOptions))
             .on('error', handleErr);
 
@@ -69,7 +76,7 @@
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.init()))// Only need it when in "release" mode.
             .pipe(autoprefixer(config.styles.autoprefixerOptions))
             .pipe(gulpif(cli.inReleaseMode, minifyCss(config.styles.minifyCssOptions)))
-            .pipe(concat(mainCssFilename))
+            .pipe(concat(outputCssFilename))
             .pipe(gulpif(cli.inReleaseMode, stripCssComments()))// Only need it when in "release" mode.
             .pipe(gulpif(cli.inReleaseMode, rev()))// Only need it when in "release" mode.
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.write('.'))) // Only need it when in "release" mode.

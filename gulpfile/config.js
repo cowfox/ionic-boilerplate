@@ -21,7 +21,8 @@
             base: path.join(__dirname,  '../'),  // Project Root
             app: "./app",
             dev: "./.tmp",
-            build: "./www"
+            build: "./www",
+            vendor: "./bower_components"
         },
 
         appInfo: {
@@ -48,6 +49,7 @@
             styleFolderPath: "./styles",
             mainSassFile: "main.scss",
             mainCssFIle: "main.css",
+            vendorCssFile: "vendor.css",
             // Options for autoprefixer.
             // {@llink https://github.com/postcss/autoprefixer}.
             autoprefixerOptions: {
@@ -62,8 +64,11 @@
             // Based on "CleanCSS" - {@link https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-api}.
             minifyCssOptions: {
                 compatibility: 'ie8'
-            }
-
+            },
+            // The "relative" path to "root path" of vendor folder.
+            vendorCssPath: [
+                'ionic/css/ionic.css'
+            ]
         },
 
 
@@ -73,7 +78,7 @@
         //----------------------------------------------------------
 
         /**
-         * get path for "app".
+         * Get path for "app".
          *
          * @param additionalPath (optional) An extra path.
          * @returns {*} The path of "app". If `additionalPath` is available, it returns the "combined' version.
@@ -86,7 +91,7 @@
         },
 
         /**
-         * get path for "dev".
+         * Get path for "dev".
          *
          * @param additionalPath (optional) An extra path.
          * @returns {*} The path of "dev". If `additionalPath` is available, it returns the "combined' version.
@@ -99,7 +104,7 @@
         },
 
         /**
-         * get path for "build".
+         * Get path for "build".
          *
          * @param additionalPath (optional) An extra path.
          * @returns {*} The path of "build". If `additionalPath` is available, it returns the "combined' version.
@@ -111,6 +116,18 @@
             return path.join(this.root.base, this.root.build);
         },
 
+        /**
+         * Get path for "vendor".
+         *
+         * @param additionalPath (optional) An extra path.
+         * @returns {*} The path of "build". If `additionalPath` is available, it returns the "combined' version.
+         */
+        getVendorPath: function(additionalPath) {
+            if (additionalPath !== undefined) {
+                return path.join(this.root.base, this.root.vendor, additionalPath);
+            }
+            return path.join(this.root.base, this.root.vendor);
+        },
 
         /**
          * get path of "manifest" file. .
