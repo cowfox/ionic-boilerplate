@@ -9,9 +9,11 @@
 
     var gulp                    = require('gulp');
     var gutil                   = require('gulp-util');
+    var gulpif                  = require('gulp-if');
     var fs                      = require('fs');
     var path                    = require('path');
     var changed                 = require('gulp-changed');
+    var imagemin                = require('gulp-imagemin');
 
     var config                  = require('../config');
     var cli                     = require('../cli');
@@ -33,6 +35,7 @@
 
         return gulp.src(inputImagesFilePaths)
             .pipe(changed(outputImagesFolderPath)) // Ignore unchanged files
+            .pipe(gulpif(cli.inReleaseMode, imagemin())) // Optimize
             .pipe(gulp.dest(outputImagesFolderPath))
             .on('error', handleErr);
     });
