@@ -34,6 +34,17 @@
             ]
         },
 
+        env: {
+            // Use `gulp-preprocess` to help process the ENV configurations.
+            // It depends on the env. variable `NODE_ENV" from NodeJS.
+            envType: {
+                dev: 'development',
+                test: 'test',
+                staging: 'staging',
+                prod: 'production'
+            }
+        },
+
         versioning: {
             version: "version",
             build: "build-version",

@@ -12,9 +12,11 @@
     "use strict";
 
     var gulp                    = require('gulp');
+    var gutil                   = require('gulp-util');
     var fs                      = require('fs');
     var path                    = require('path');
 
+    var preprocess              = require('gulp-preprocess');
     var gulpif                  = require('gulp-if');
     var sass                    = require('gulp-sass');
     var streamqueue             = require('streamqueue');
@@ -67,6 +69,9 @@
         var sassOptions = cli.requiredBuild ? { style: 'compressed' } : { style: 'expanded' };
 
         var sassStream = gulp.src(inputMainSassFilePaths)
+            .pipe(preprocess({
+                context: cli.getEnvInfo()
+            }))
             .pipe(sass(sassOptions))
             .on('error', handleErr);
 
