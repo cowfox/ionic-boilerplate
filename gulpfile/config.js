@@ -10,7 +10,7 @@
 
     var path        = require('path');
 
-    module.exports = {
+    var config = {
 
         //----------------------------------------------------------
         // Project Info
@@ -103,8 +103,7 @@
         styles: {
             styleFolderPath: "./styles",
             mainSassFile: "main.scss",
-            mainCssFIle: "main.css",
-            vendorCssFile: "vendor.css",
+            mainCssFIle: "main.css",  // The filename of "output" CSS file generated from the "main Sass" file.
             // Options for autoprefixer.
             // {@llink https://github.com/postcss/autoprefixer}.
             autoprefixerOptions: {
@@ -120,11 +119,13 @@
             minifyCssOptions: {
                 compatibility: 'ie8'
             },
-            // The "relative" path to "root path" of vendor folder.
+            vendorCssFile: "vendor.css", // The filename of "output" CSS file generated from all the vendors' CSS files.
+            // The "relative" path to "root path" of the **vendor folder**.
             vendorCssFilePaths: [
                 'ionic/css/ionic.css'
             ]
         },
+
 
         //----------------------------------------------------------
         // Scripts
@@ -141,9 +142,10 @@
             // Make sure the related **Gulp Plugin** is installed.
             useLintHTMLReporter: true,
             lintHTMLOutputFilename: './jshint-output.html', // Under "base dir".
-            // If need to also do code screening on Gulp Tasks files.
+            // If need to also do scripts screening on Gulp Tasks files.
             needLintGulpTaskFiles: true,
             gulpFilePath: "./gulpfile/**/*.js",
+
             src: [
                 '!www/js/bundles/**/*',
                 'www/js/**/*.js'
@@ -270,5 +272,7 @@
         }
 
     };
+
+    module.exports = config;
 
 }());
