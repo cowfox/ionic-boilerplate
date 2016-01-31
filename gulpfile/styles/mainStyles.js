@@ -33,7 +33,7 @@
     var pathBuilder             = require('../util/pathBuilder');
 
     // Gulp task name
-    var taskName = "styles-main";
+    var taskName = "main-styles";
 
     //----------------------------------------------------------
     // GUlp Tasks

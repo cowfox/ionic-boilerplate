@@ -19,10 +19,7 @@
 
     var rename                  = require("gulp-rename");
     var gulpif                  = require('gulp-if');
-    var streamqueue             = require('streamqueue');
     var concat                  = require('gulp-concat');
-    var rev                     = require('gulp-rev');
-    var minifyCss               = require('gulp-minify-css');
 
     var config                  = require('../config');
     var cli                     = require('../cli');
@@ -30,7 +27,7 @@
     var pathBuilder             = require('../util/pathBuilder');
 
 
-    var taskName = "styles-vendor";
+    var taskName = "vendor-styles";
 
     //----------------------------------------------------------
     // Gulp Tasks
