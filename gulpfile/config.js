@@ -51,6 +51,50 @@
             dev: "dev-version"
         },
 
+        //----------------------------------------------------------
+        // Fonts
+        //----------------------------------------------------------
+
+        fonts: {
+            fontFolderPath: "./fonts",
+            // ----
+            // Iconfont Configs.
+            // ----
+            iconfontFilePath: "./fonts/iconfont/**/*.svg",
+            iconfontName: 'Ionicons', // The name of the generated font family.
+            iconfontCssOptions: {
+                // Need to be the same as another `fontName` inside `iconfontOptions`.
+                fontName: 'Ionicons',
+                // The path of the iconfont CSS file.
+                // It is **relative** to the path of **FINAL `dest` copying folder defined by `gulp.dest()`**
+                targetPath: '../styles/_icons.css',
+                // The path of the target font file that **this generated CSS file** links to.
+                // It is **relative** to the path of **THIS CSS file**.
+                // NOTE: Be sure to add the FINAL "/" here - `gulp-iconfont-css"` version "2.0.0"
+                fontPath: '../fonts/',
+                // Be sure to have the chosen engine installed.
+                engine: 'lodash'
+            },
+            iconfontOptions: {
+                fontName: 'Ionicons',
+                appendUnicode: true,
+                formats: ['ttf', 'eot', 'woff'], // default, 'woff2' and 'svg' are available
+                timestamp: Math.round(Date.now()/1000) // recommended to get consistent builds when watching files
+            },
+
+            // ----
+            // Fonts Copying
+            // ----
+            // Relative to `fontFolderPath`.
+            mainFontFilePath: [
+                './**/*.+(eot|ttf|woff)'
+            ],
+            // The "relative" path to "root path" of the **vendor folder**.
+            vendorFontFilePaths: [
+                'ionic/fonts/**/*.+(eot|ttf|woff)'
+            ]
+        },
+
 
         //----------------------------------------------------------
         // Styles
