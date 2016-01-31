@@ -27,11 +27,14 @@
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
+    // Gulp task name
+    var taskName = "appicon";
+
     //----------------------------------------------------------
     // Gulp Tasks
     //----------------------------------------------------------
 
-    gulp.task('appicon', function() {
+    gulp.task(taskName, function() {
         var inputAppiconFilePaths = pathBuilder.buildPathArrayFromBase(
             config.getAppPath(config.assets.appiconFolderPath),
             config.assets.appiconFilePaths);

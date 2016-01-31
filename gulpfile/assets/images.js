@@ -20,11 +20,14 @@
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
+    // Gulp task name
+    var taskName = "images";
+
     //----------------------------------------------------------
     // Gulp Tasks
     //----------------------------------------------------------
 
-    gulp.task('images', function() {
+    gulp.task(taskName, function() {
         var inputImagesFilePaths = pathBuilder.buildPathArrayFromBase(
             config.getAppPath(config.assets.imageFolderPath),
             config.assets.imageFilePaths);

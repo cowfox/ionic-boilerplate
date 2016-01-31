@@ -15,19 +15,23 @@
         //----------------------------------------------------------
         // Project Info
         //----------------------------------------------------------
-
         // Root dir.
         root: {
             base: path.join(__dirname,  '../'),  // Project Root
+            // "App Root" - all the source code should be under this folder.
             app: "./app",
+            // "Dev Root" - app will be built into this folder while doing "dev" preview (in browser)
             dev: "./.tmp",
+            // "Build Root" - app will be built into this folder while doing "emulation", "device tests" and "release".
             build: "./www",
+            // "Vendor Root" - by "bower".
             vendor: "./bower_components"
         },
 
         appInfo: {
             manifest: "./manifest.json", // under `app` folder.
             syncTargets: [
+                // Relative to 'App Root'.
                 "./package.json",
                 "./bower.json",
                 "./ionic.project"
@@ -51,15 +55,45 @@
             dev: "dev-version"
         },
 
-        //----------------------------------------------------------
-        // Fonts
-        //----------------------------------------------------------
 
+        //----------------------------------------------------------
+        // Assets - App Icons & Images
+        //----------------------------------------------------------
+        assets: {
+            // Relative to 'App Root'.
+            imageFolderPath: './images',
+            imageFilePaths: [
+                // Relative to `imageFolderPath`.
+                './**/*'
+            ],
+
+            // ----
+            // App Icons.
+            // Check Gulp task `appicon` for more details.
+            // ----
+            appiconFolderPath: './icons',
+            appiconFilePaths: [
+                // Relative to `appiconFolderPath`.
+                './icon.+(png|psd|ai)',
+                './splash.+(png|psd|ai)'
+            ],
+            // Relative to 'Project Root'.
+            // The target folder is normally used by `ionic resources`.
+            // So, just keep it as default.
+            appiconTargetFolderPath: './resources'
+        },
+
+
+        //----------------------------------------------------------
+        // Assets - Fonts
+        //----------------------------------------------------------
         fonts: {
+            // Relative to 'App Root'.
             fontFolderPath: "./fonts",
             // ----
             // Iconfont Configs.
             // ----
+            // Relative to `fontFolderPath`.
             iconfontFilePath: "./fonts/iconfont/**/*.svg",
             iconfontName: 'Ionicons', // The name of the generated font family.
             iconfontCssOptions: {
@@ -85,12 +119,13 @@
             // ----
             // Fonts Copying
             // ----
-            // Relative to `fontFolderPath`.
-            mainFontFilePath: [
+            mainFontFilePaths: [
+                // Relative to `fontFolderPath`.
                 './**/*.+(eot|ttf|woff)'
             ],
             // The "relative" path to "root path" of the **vendor folder**.
             vendorFontFilePaths: [
+                // Relative to 'Vendor Root'.
                 'ionic/fonts/**/*.+(eot|ttf|woff)'
             ]
         },
@@ -99,8 +134,8 @@
         //----------------------------------------------------------
         // Styles
         //----------------------------------------------------------
-
         styles: {
+            // Relative to 'App Root'.
             styleFolderPath: "./styles",
             mainSassFile: "main.scss",
             mainCssFIle: "main.css",  // The filename of "output" CSS file generated from the "main Sass" file.
@@ -122,6 +157,7 @@
             vendorCssFile: "vendor.css", // The filename of "output" CSS file generated from all the vendors' CSS files.
             // The "relative" path to "root path" of the **vendor folder**.
             vendorCssFilePaths: [
+                // Relative to 'Vendor Root'.
                 'ionic/css/ionic.css'
             ]
         },
@@ -130,20 +166,23 @@
         //----------------------------------------------------------
         // Scripts
         //----------------------------------------------------------
-
         scripts: {
+            // Relative to 'App Root'.
             scriptFolderPath: "./scripts",
             // The path array to the JS files that needs to be screened.
             lintFilePaths: [
+                // // Relative to 'scriptFolderPath'.
                 './**/*.js'
             ],
             // By default, it uses `jshint-stylish`.
             // If `true`, it uses `gulp-jshint-html-reporter`.
             // Make sure the related **Gulp Plugin** is installed.
             useLintHTMLReporter: true,
-            lintHTMLOutputFilename: './jshint-output.html', // Under "base dir".
+            // Relative to 'Project Root'.
+            lintHTMLOutputFilename: './jshint-output.html',
             // If need to also do scripts screening on Gulp Tasks files.
             needLintGulpTaskFiles: true,
+            // Relative to 'Project Root'.
             gulpFilePath: "./gulpfile/**/*.js",
 
             src: [

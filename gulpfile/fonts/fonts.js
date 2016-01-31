@@ -1,6 +1,7 @@
 /***********************************************************
  *  \#\#\# Gulp task for Fonts Copying \#\#\#
  *
+ * The copying include both fonts inside `app` folder and the fonts from `vendors`.
  *
  ***********************************************************/
 
@@ -18,19 +19,25 @@
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
+    // Gulp task name
+    var taskName = "fonts";
+
     //----------------------------------------------------------
     // @cmtsection
     //----------------------------------------------------------
 
-    var inputFontFilePaths = pathBuilder.buildPathArrayFromBase(config.getVendorPath(), config.fonts.vendorFontFilePaths)
-        .concat(pathBuilder.buildPathArrayFromBase(config.getAppPath(config.fonts.fontFolderPath), config.fonts.mainFontFilePath));
+    gulp.task(taskName, function() {
 
-    gutil.log("---> Fonts Copying from the folders: ", inputFontFilePaths);
+        var inputFontFilePaths = pathBuilder.buildPathArrayFromBase(config.getVendorPath(), config.fonts.vendorFontFilePaths)
+            .concat(pathBuilder.buildPathArrayFromBase(config.getAppPath(config.fonts.fontFolderPath), config.fonts.mainFontFilePaths));
 
-    gulp.task('fonts', function() {
+        var outputFontFolderPath =  cli.solveTargetFolderPath(config.fonts.fontFolderPath);
+
+        gutil.log("---> Fonts copying to the folder: ", outputFontFolderPath, "with the source files:", inputFontFilePaths);
+
         return gulp.src(inputFontFilePaths)
-            .pipe(changed(cli.solveTargetFolderPath(config.fonts.fontFolderPath))) // Ignore unchanged files
-            .pipe(gulp.dest(cli.solveTargetFolderPath(config.fonts.fontFolderPath)))
+            .pipe(changed(outputFontFolderPath)) // Ignore unchanged files
+            .pipe(gulp.dest(outputFontFolderPath))
             .on('error', handleErr);
     });
 
