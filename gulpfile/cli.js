@@ -7,21 +7,22 @@
 (function () {
     'use strict';
 
-    var path            = require('path');
+    var gulp                    = require('gulp');
+    var gutil                   = require('gulp-util');
+    var path                    = require('path');
 
-    var config          = require('./config');
-    var pathBuilder     = require('./util/pathBuilder');
+    var config                  = require('./config');
+    var pathBuilder             = require('./util/pathBuilder');
 
     //----------------------------------------------------------
     // CLI helper info.
     //----------------------------------------------------------
     var args = require('yargs')
         .usage('Usage: gulp [options] [platform]')
+        .help('h')
+        .alias('h', 'help')
+        .describe('h', 'Show "NEW" options added to "gulp" cmd.')
         .options({
-            'h': {
-                alias: 'help',
-                describe: 'Show "NEW" options added to "gulp" cmd.'
-            },
             // App Running Mode
             'build' :{
                 alias: 'build-app',
@@ -34,7 +35,7 @@
                 alias: 'release-app',
                 demand: false,
                 default: false,
-                describe: 'Release the app as package. "Build" is required -  with all "optimizations" done.',
+                describe: 'Release the app as package. "Build" is required - with all "optimizations" done.',
                 type: 'boolean'
             },
             'e' :{
