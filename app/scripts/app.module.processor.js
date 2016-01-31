@@ -1,11 +1,5 @@
-/**
- * @created Lei)Leo) SHI <foxshee@gmail.com>
- * @date 1/24/16
- */
-
-'use strict';
-
-/* ***************************************************************************
+/***********************************************************
+ * ### General Module Processor of Angular Module ###
  * ### General Module Processor of Angular Module ###
  *
  * This module is used to help process the **module registration** of "all" Angular elements (like controller, service, etc.)
@@ -35,7 +29,10 @@
      func: controllerFunc
      };
  * ```
- */
+ ***********************************************************/
+
+(function () {
+    "use strict";
 
 /**
  * Types of `Angular Elements`.
@@ -77,10 +74,7 @@ module.exports = {
  */
 function declare(module, elementsMap) {
 
-    var key;
-
-    for(key in elementsMap) {
-
+    elementsMap.forEach(function(key) {
         if (! elementsMap.hasOwnProperty(key)) {
             return;
         }
@@ -112,8 +106,8 @@ function declare(module, elementsMap) {
             // Not any Angular type we are looking for....
             return;
         }
-    }
-
+    });
 }
 
+}());
 

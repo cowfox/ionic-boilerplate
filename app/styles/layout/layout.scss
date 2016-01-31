@@ -1,7 +1,14 @@
 /***********************************************************
- * ### The variables definitions for all SCSS. ###
-
+ *  
+ 
  ***********************************************************/
 
-$textColor: #ccc;
+.loader {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+}
 
+:fullscreen a {
+  display: flex
+}
