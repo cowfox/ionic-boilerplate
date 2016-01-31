@@ -83,7 +83,7 @@
             .pipe(gulpif(cli.inReleaseMode, minifyCss(config.styles.minifyCssOptions)))
             .pipe(concat(outputCssFilename))
             .pipe(gulpif(cli.inReleaseMode, stripCssComments()))// Only need it when in "release" mode.
-            .pipe(gulpif(cli.inReleaseMode, rev()))// Only need it when in "release" mode.
+            //.pipe(gulpif(cli.inReleaseMode, rev()))// Only need it when in "release" mode.
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.write('.'))) // Only need it when in "release" mode.
             .pipe(gulp.dest(targetFolderPath))
             .on('error', handleErr);
