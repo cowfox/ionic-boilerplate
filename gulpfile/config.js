@@ -169,6 +169,38 @@
         scripts: {
             // Relative to 'App Root'.
             scriptFolderPath: "./scripts",
+
+            // ----
+            // Main Scripts
+            // ----
+            mainScriptFile: "app.js", // The filename of "output" JS file for all app's code.
+            mainScriptFilePaths: [
+                // Relative to 'scriptFolderPath'.
+                './app.module.js'
+            ],
+
+            // ----
+            // Vendor Scripts
+            // ----
+            vendorScriptFile: "vendor.js", // The filename of "output" JS file generated from all the vendors' JS files.
+            //
+            // The list of bundles that are libraries (from vendors).
+            //
+            // The "name" listed below should be defined in the `browserify-shim` section of `package.json` file.
+            //
+            // {@link http://www.5neo.be/browserify-multiple-bundles-with-gulp-on-angularjs-project}
+            vendorScriptFileBrowserifyRequireBundle: [
+                'angular',
+                'ionic',
+                'angular-ui-router',
+                'angular-sanitize',
+                'angular-animate',
+                'ionic-angular'
+            ],
+
+            // ----
+            // Lint Scripts
+            // ----
             // The path array to the JS files that needs to be screened.
             lintFilePaths: [
                 // // Relative to 'scriptFolderPath'.
@@ -183,12 +215,10 @@
             // If need to also do scripts screening on Gulp Tasks files.
             needLintGulpTaskFiles: true,
             // Relative to 'Project Root'.
-            gulpFilePath: "./gulpfile/**/*.js",
+            gulpFilePath: "./gulpfile/**/*.js"
 
-            src: [
-                '!www/js/bundles/**/*',
-                'www/js/**/*.js'
-            ]
+
+
         },
 
 
@@ -271,6 +301,8 @@
         },
 
 
+        /////////////////////////////////
+
 
         // Base src dir
         baseDir: path.join(__dirname,  '../'),  // Project Root
@@ -282,7 +314,7 @@
 
         // browserify
         browserify: {
-            entries: 'js/app.js',
+            entries: 'js/app.module.js',
             bundleFile: 'app.bundle.js',
             dest: 'js/bundles/',
             sourceMapInProd: false
