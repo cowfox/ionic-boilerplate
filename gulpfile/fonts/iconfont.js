@@ -23,6 +23,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -32,10 +33,10 @@
     // Gulp Tasks
     //----------------------------------------------------------
 
-    var iconfontPath = config.getAppPath(config.fonts.iconfontFilePath);
-
-
     gulp.task(taskName, function(){
+
+        var iconfontPath = config.getAppPath(config.fonts.iconfontFilePath);
+
         return gulp.src(iconfontPath,
             {
                 buffer: false
@@ -43,7 +44,11 @@
             .pipe(iconfont(config.fonts.iconfontOptions))
             .pipe(iconfontCss(config.fonts.iconfontCssOptions))
             .pipe(gulp.dest(cli.solveTargetFolderPath(config.fonts.fontFolderPath)))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "Iconfont generated from the path:", iconfontPath);
+            });
     });
 
     //----------------------------------------------------------

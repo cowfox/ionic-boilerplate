@@ -16,6 +16,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -23,7 +24,7 @@
     var taskName = "fonts";
 
     //----------------------------------------------------------
-    // @cmtsection
+    // Gulp Tasks
     //----------------------------------------------------------
 
     gulp.task(taskName, function() {
@@ -33,12 +34,14 @@
 
         var outputFontFolderPath =  cli.solveTargetFolderPath(config.fonts.fontFolderPath);
 
-        gutil.log("---> Fonts copying to the folder: ", outputFontFolderPath, "with the source files:", inputFontFilePaths);
-
         return gulp.src(inputFontFilePaths)
             .pipe(changed(outputFontFolderPath)) // Ignore unchanged files
             .pipe(gulp.dest(outputFontFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "Fonts copied to the folder:", outputFontFolderPath, "with the source files:", inputFontFilePaths);
+            });
     });
 
     //----------------------------------------------------------

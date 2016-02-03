@@ -20,6 +20,7 @@
     var jshint                  = require('gulp-jshint');
 
     var config                  = require('../config');
+    var logger                  = require('../util/logger');
     var pathBuilder             = require('../util/pathBuilder');
 
     var taskName = "lint";
@@ -60,13 +61,16 @@
             var lintHTMLReporter = require('gulp-jshint-html-reporter');
             var outputPath = config.getBasePath(config.scripts.lintHTMLOutputFilename);
 
-            gutil.log("JSHint Report outputs to", outputPath);
             return gulp.src(scriptFilePaths)
                 .pipe(jshint())
                 .pipe(jshint.reporter(lintHTMLReporter, {
                     filename: outputPath,
                     createMissingFolders : false
-                }));
+                }))
+                .on('end', function() {
+                    logger.info(taskName,
+                        "JSHint Report outputted to:", outputPath);
+                });
         } else {
             var lintReporter = require('jshint-stylish');
             return gulp.src(scriptFilePaths)

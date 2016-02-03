@@ -24,6 +24,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -41,12 +42,14 @@
 
         var outputAppiconFolderPath = config.getBasePath(config.assets.appiconTargetFolderPath);
 
-        gutil.log("---> Icons copying to the folder: ", outputAppiconFolder, "with the source files:", inputAppiconFilePaths);
-
         return gulp.src(inputAppiconFilePaths)
             .pipe(changed(outputAppiconFolderPath)) // Ignore unchanged files
             .pipe(gulp.dest(outputAppiconFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "Icons copied to the folder:", outputAppiconFolderPath, "with the source files:", inputAppiconFilePaths);
+            });
     });
 
     //----------------------------------------------------------

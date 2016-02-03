@@ -23,6 +23,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -74,7 +75,11 @@
         return gulp.src(newInputCssFilePaths)
             .pipe(concat(newOutputCssFilename))
             .pipe(gulp.dest(targetFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "VENDOR styles copied to the folder:", targetFolderPath, "with the source files:", newInputCssFilePaths);
+            });
     }
 
 }());

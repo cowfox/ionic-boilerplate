@@ -1,31 +1,48 @@
-'use strict';
+/***********************************************************
+ *  \#\#\# Gulp Helper - Error Handler \#\#\#
+ *
+ *
+ ***********************************************************/
 
-var gulp    = require('gulp');
-var notify  = require('gulp-notify');
+(function () {
+    "use strict";
 
-var config = require('../config');
+    var gulp        = require('gulp');
+    var notify      = require('gulp-notify');
 
-module.exports = function(error) {
+    var beep        = require('beepbeep')
 
-    if(!config.inProd) {
-        // In `development` mode
+    var config      = require('../config');
+    var cli         = require('../cli');
+    var logger      = require('./logger');
 
-        var args = Array.prototype.slice.call(arguments);
+    /*
+        Export function directly.
+     */
+    module.exports = function(error) {
 
-        // Send error to notification center with gulp-notify
-        notify.onError({
-            title: 'Compile Error',
-            message: '<%= error.message %>'
-        }).apply(this, args);
+        logger.error('', error.code, error.message);
 
-        // Keep gulp from hanging on this task
-        this.emit('end');
+        // If it is in "release" mode, end the whole process
+        // after certain error.
+        if (!cli.inReleaseMode) {
+            var args = new Array(arguments.length);
 
-    } else {
-        // In `production` mode.
-        // Log the error and stop the process to prevent broken code from building.
-        console.log(error);
-        process.exit(1);
-    }
+            // Send error to notification center with gulp-notify
+            notify.onError({
+                title: '[Gulp Flow] "Release" Compile Error',
+                message: '<%= error.message %>'
+            }).apply(this, args);
 
-};
+            // Do "beep" sound
+            beep(3, 1000);
+
+            // Keep gulp from hanging on this task
+            this.emit('end');
+        } else {
+            process.exit(1);
+        }
+
+    };
+
+}());

@@ -29,6 +29,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -41,7 +42,6 @@
 
     gulp.task(taskName, function() {
 
-        console.log("solveTargetFolderPath:", config.styles.styleFolderPath, cli.solveTargetFolderPath(config.styles.styleFolderPath));
         return processStyleFiles(
             config.getAppPath(path.join(config.styles.styleFolderPath, config.styles.mainSassFile)),
             config.styles.mainCssFIle,
@@ -86,7 +86,11 @@
             //.pipe(gulpif(cli.inReleaseMode, rev()))// Only need it when in "release" mode.
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.write('.'))) // Only need it when in "release" mode.
             .pipe(gulp.dest(targetFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "MAIN styles copied to the folder:", targetFolderPath, "with the \"MAIN\" source file:", inputMainSassFilePaths);
+            });
     }
 
 }());

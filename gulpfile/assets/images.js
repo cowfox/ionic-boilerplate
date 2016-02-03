@@ -17,6 +17,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -34,13 +35,15 @@
 
         var outputImagesFolderPath = cli.solveTargetFolderPath(config.assets.imageFolderPath);
 
-        gutil.log("---> Image copying to the folder: ", outputImagesFolderPath, "with the source files:", inputImagesFilePaths);
-
         return gulp.src(inputImagesFilePaths)
             .pipe(changed(outputImagesFolderPath)) // Ignore unchanged files
             .pipe(gulpif(cli.inReleaseMode, imagemin())) // Optimize
             .pipe(gulp.dest(outputImagesFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "Images copied to the folder:", outputImagesFolderPath, "with the source files:", inputImagesFilePaths);
+            });
     });
 
     //----------------------------------------------------------

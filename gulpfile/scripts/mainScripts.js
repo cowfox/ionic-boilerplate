@@ -41,6 +41,7 @@
 
     var config              = require('../config');
     var cli                 = require('../cli');
+    var logger              = require('../util/logger');
     var handleErr           = require('../util/handleErr');
     var pathBuilder         = require('../util/pathBuilder');
 
@@ -118,7 +119,11 @@
             }))))
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.write('./')))
             .pipe(gulp.dest(targetFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "MAIN script Browserified and copied to", targetFolderPath, "with the file name:", newOutputScriptFilename);
+            });
     }
 
 }());

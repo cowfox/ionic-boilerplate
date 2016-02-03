@@ -36,6 +36,7 @@
 
     var config                  = require('../config');
     var cli                     = require('../cli');
+    var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
 
@@ -82,7 +83,7 @@
         }
 
         var b = browserify({
-            basedir: config.getVendorPath(),
+            //basedir: config.getBasePath(),
             debug: cli.inReleaseMode
         });
 
@@ -103,7 +104,11 @@
             }))))
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.write('./')))
             .pipe(gulp.dest(targetFolderPath))
-            .on('error', handleErr);
+            .on('error', handleErr)
+            .on('end', function() {
+                logger.info(taskName,
+                    "VENDOR script Browserified and copied to", targetFolderPath, "with the file name:", newOutputScriptFilename);
+            });
     }
 
 }());
