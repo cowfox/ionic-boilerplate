@@ -130,6 +130,49 @@
             ]
         },
 
+        //----------------------------------------------------------
+        // HTMLs
+        //----------------------------------------------------------
+
+        htmls: {
+            indexFile: "index.html",
+
+            // ----
+            // `index.html` Injection
+            // ----
+            injectMainCssFilename: "main*.css",
+            // It depends on the exact format added to `index.html`.
+            // e.g. In `<!-- inject:app-styles:css --><!-- endinject -->`, the "tag" is "app-styles".
+            injectMainCssTag: "main-styles",
+            injectVendorCssFilename: "vendor*.css",
+            injectVendorCssTag: "vendor-styles",
+
+            injectMainScriptFilename: "main*.js",
+            injectMainScriptTag: "main-scripts",
+            injectVendorScriptFilename: "vendor*.js",
+            injectVendorScriptTag: "vendor-scripts",
+
+            // ----
+            // Template HTMLs
+            // ----
+            templatesFilePaths: [
+                // Relative to `App Root`.
+                './**/templates/**/*.html'
+            ],
+            // Relative to `App Root`.
+            templatesFolderPath: "./templates",
+            // ----
+            // Angular Templates Cache
+            // {#link https://docs.angularjs.org/api/ng/service/$templateCache}
+            // ----
+            templatesCacheUsed: true,
+            templatesCacheFilename: "templates.cache.js",
+            templatesCacheOptions: {
+                module:'templatesCache',
+                standalone:true,
+                root: ''
+            }
+        },
 
         //----------------------------------------------------------
         // Styles
@@ -137,10 +180,16 @@
         styles: {
             // Relative to 'App Root'.
             styleFolderPath: "./styles",
+            styleFilePaths: [
+                './**/*.scss'
+            ],
             mainSassFile: "main.scss",
             mainCssFIle: "main.css",  // The filename of "output" CSS file generated from the "main Sass" file.
+
+            // ----
             // Options for autoprefixer.
             // {@llink https://github.com/postcss/autoprefixer}.
+            // ----
             autoprefixerOptions: {
                 browsers: [
                     'last 1 Chrome version',
@@ -149,13 +198,19 @@
                 ],
                 cascade: false
             },
+
+            // ----
             // Options for minfyCSS
             // Based on "CleanCSS" - {@link https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-api}.
+            // ----
             minifyCssOptions: {
                 compatibility: 'ie8'
             },
+
+            // ----
+            // Vendor CSS
+            // ----
             vendorCssFile: "vendor.css", // The filename of "output" CSS file generated from all the vendors' CSS files.
-            // The "relative" path to "root path" of the **vendor folder**.
             vendorCssFilePaths: [
                 // Relative to 'Vendor Root'.
                 'ionic/css/ionic.css'
@@ -173,7 +228,7 @@
             // ----
             // Main Scripts
             // ----
-            mainScriptFile: "app.js", // The filename of "output" JS file for all app's code.
+            mainScriptFile: "main.js", // The filename of "output" JS file for all app's code.
             mainScriptFilePaths: [
                 // Relative to 'scriptFolderPath'.
                 './app.module.js'
@@ -187,6 +242,7 @@
             // The list of bundles that are libraries (from vendors).
             //
             // The "name" listed below should be defined in the `browserify-shim` section of `package.json` file.
+            // **NOT** the `export` part !!!!!
             //
             // {@link http://www.5neo.be/browserify-multiple-bundles-with-gulp-on-angularjs-project}
             vendorScriptFileBrowserifyRequireBundle: [
@@ -195,7 +251,9 @@
                 'angular-ui-router',
                 'angular-sanitize',
                 'angular-animate',
-                'ionic-angular'
+                'ionic-angular',
+
+                'ng-cordova'
             ],
 
             // ----
@@ -217,8 +275,14 @@
             // Relative to 'Project Root'.
             gulpFilePath: "./gulpfile/**/*.js"
 
+        },
 
 
+        //----------------------------------------------------------
+        // Express Server
+        //----------------------------------------------------------
+        serve: {
+            port: "8800",
         },
 
 
