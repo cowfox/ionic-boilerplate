@@ -10,7 +10,7 @@
     var gulp        = require('gulp');
     var notify      = require('gulp-notify');
 
-    var beep        = require('beepbeep')
+    var beep        = require('beepbeep');
 
     var config      = require('../config');
     var cli         = require('../cli');
@@ -26,6 +26,9 @@
         // If it is in "release" mode, end the whole process
         // after certain error.
         if (!cli.inReleaseMode) {
+            // Do "beep" sound
+            beep(3, 400);
+
             var args = new Array(arguments.length);
 
             // Send error to notification center with gulp-notify
@@ -33,9 +36,6 @@
                 title: '[Gulp Flow] "Release" Compile Error',
                 message: '<%= error.message %>'
             }).apply(this, args);
-
-            // Do "beep" sound
-            beep(3, 1000);
 
             // Keep gulp from hanging on this task
             this.emit('end');
