@@ -48,20 +48,9 @@
             cli.requiredBuild ? 'noop' : 'serve',
             cli.requiredBuild ? 'noop' : 'watch',
             cli.requiredBuild ? 'bump-build' : 'noop',
-            //emulate ? ['ionic:emulate', 'watchers'] : 'noop',
-            //run ? 'ionic:run' : 'noop',
+            cli.inEmulateMode ? ['ionic-emulate', 'watch'] : 'noop',
+            cli.inRunMode ? 'ionic-run' : 'noop',
             done);
     });
-
-
-
-    //// Ensure process ends after all Gulp tasks are finished
-    //gulp.on('stop', function () {
-    //    if ( !global.isWatching ) {
-    //        process.nextTick(function () {
-    //            process.exit(0);
-    //        });
-    //    }
-    //});
 
 }());

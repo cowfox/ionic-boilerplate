@@ -42,16 +42,24 @@
             'e' :{
                 alias: 'emulate',
                 demand: false,
-                default: false,
+                default: '',
                 describe: 'Load "emulator" to run the app. App build is done first.',
-                type: 'boolean'
+                type: 'string'
+            },
+            // TODO The current `gulp-shell` does not support **conditional run**.
+            'target' :{
+                alias: 'target-emulator',
+                demand: false,
+                default: '',
+                describe: 'The target iOS emulator',
+                type: 'string'
             },
             'r' :{
                 alias: 'run',
                 demand: false,
-                default: false,
+                default: '',
                 describe: 'Load "device" to run the app. App build is done first.',
-                type: 'boolean'
+                type: 'string'
             },
             // Env.
             'env' :{
@@ -90,19 +98,29 @@
     //----------------------------------------------------------
 
     // Running Mode
-    var inEmulateMode = args.emulate;
-    var emulatePlatform = 'ios'; // Set `ios` as the default value to `emulate` and `run`.
-    var inRunMode = args.run;
-    var runPlatform = 'ios'; // Set `ios` as the default value to `emulate` and `run`.
+    var inEmulateMode = false;
+    var emulatePlatform = args.emulate;
+    if (emulatePlatform !== '') {
+        inEmulateMode = true;
+    }
+    var inRunMode = false;
+    var runPlatform = args.run;
+    if (runPlatform !== '') {
+        inRunMode = true;
+    }
     var inReleaseMode = args.release;
+
     // For `emulate`, `run`, `release`, it also needs to build the app first.
-    var requiredBuild = (args.build || inEmulateMode || inRunMode || inReleaseMode);
+    var requiredBuild = !!(args.build || inEmulateMode || inRunMode || inReleaseMode);
+
+    // iOS emulator devices
+    var emulatorDevice = args.target;
 
     // Env.
     logger.info('ENV', "Current Env.:", args.environment);
     var env = args.environment;
 
-    gutil.log("requiredBuild", args.build, inReleaseMode, requiredBuild);
+    gutil.log("requiredBuild", args.build, inEmulateMode, requiredBuild);
     var baseTargetFolderPath = path.resolve(requiredBuild ? config.getBuildPath() : config.getDevPath());
 
     // Versioning
@@ -113,6 +131,7 @@
 
         inEmulateMode: inEmulateMode,
         emulatePlatform: emulatePlatform,
+        emulatorDevice: emulatorDevice,
         inRunMode: inRunMode,
         runPlatform: runPlatform,
         inReleaseMode: inReleaseMode,
