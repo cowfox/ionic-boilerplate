@@ -47,6 +47,7 @@
             'index',
             cli.requiredBuild ? 'noop' : 'serve',
             cli.requiredBuild ? 'noop' : 'watch',
+            cli.requiredBuild ? 'bump-build' : 'noop',
             //emulate ? ['ionic:emulate', 'watchers'] : 'noop',
             //run ? 'ionic:run' : 'noop',
             done);
