@@ -23,6 +23,8 @@ platforms/
 build/
 .tmp/
 coverage/
+jshint-output.html
+*.cache.*
 
 ## Production folder
 www/
