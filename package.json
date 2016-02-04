@@ -1,110 +1,149 @@
 {
-  "name": "ionic-boilerplate",
-  "version": "0.0.6",
-  "description": "Aproject boilerplate for starting development with Ionic framework.",
-  "keywords": [
-    "ionic",
-    "angular",
-    "gulp",
-    "browserify",
-    "sass",
-    "karma",
-    "jasmine",
-    "protractor",
-    "boilerplate"
-  ],
-  "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "ssh://git@stash.wuneo.co/starter/ionic-boilerplate.git"
-  },
-  "author": {
-    "name": "Lei SHI",
-    "email": "foxshee@gmail.com",
-    "url": "http://5neo.be"
-  },
-  "engines": {
-    "node": "5,0,0",
-    "npm": "3.0.0"
-  },
-  "dependencies": {
-    "gulp": "^3.5.6",
-    "gulp-sass": "^2.0.4",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
-  },
-  "devDependencies": {
-    "bower": "^1.3.3",
-    "gulp-util": "^2.2.14",
-    "shelljs": "^0.3.0",
-
-    "browserify": "^11.0.1",
-    "browserify-shim": "^3.8.8",
-    "browserify-ngannotate": "2.0.0",
-    "vinyl-source-stream": "1.1.0",
-    "vinyl-buffer": "1.0.0",
-    "watchify": "3.7.0",
-    "gulp-ng-annotate": "1.1.0",
-    "gulp-sourcemaps": "1.6.0",
-    "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "^1.4.2",
-    "bulk-require": "^0.2.1",
-    "bulkify": "1.1.1",
-
-    "require-dir": "^0.3.0",
-    "del": "2.2.0",
-    "gulp-notify": "2.2.0",
-    "gulp-if": "^2.0.0",
-    "brfs": "1.4.3",
-    "gulp-jshint": "2.0.0",
-    "jshint": "2.9.1",
-    "jshint-stylish": "^2.1.0",
-    "gulp-sequence": "0.4.4",
-    "gulp-watch": "4.3.5",
-    "gulp-watch-sequence": "1.0.0",
-
-    "karma": "0.13.19",
-    "karma-jasmine": "^0.3.6",
-    "karma-browserify": "^4.4.0",
-    "karma-chrome-launcher": "^0.2.1",
-    "karma-firefox-launcher": "^0.1.3",
-    "phantomjs": "1.9.19",
-    "karma-phantomjs-launcher": "0.2.3",
-
-    "angular-mocks": "^1.3.15",
-
-    "karma-coverage": "0.5.3",
-    "isparta": "^4.0.0",
-    "browserify-istanbul": "0.2.1",
-
-    "protractor": "^3.0.0",
-    "gulp-protractor": "2.1.0"
-  },
-  "cordovaPlugins": [
-
-  ],
-  "cordovaPlatforms": [
-
-  ],
-  "scripts": {
-    "install": "napa"
-  },
-  "napa": {
-    "angular": "angular/bower-angular#v1.4.9",
-    "ionic": "driftyco/ionic-bower#v1.2.4"
-  },
-  "browser": {
-    "angular": "./node_modules/angular/angular.js",
-    "ionic": "./node_modules/ionic/js/ionic.js"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "angular": "angular",
-    "ionic": "ionic"
-  }
+    "name": "ionic-boilerplate",
+    "version": "0.7.0",
+    "build-version": "672",
+    "dev-version": "0.6.6-20160203",
+    "description": "A project boilerplate for starting development with Ionic framework.",
+    "keywords": [
+        "ionic",
+        "boilerplate",
+        "angular",
+        "gulp",
+        "browserify",
+        "sass",
+        "karma",
+        "protractor",
+        "mocha",
+        "chai",
+        "sinon"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@stash.wuneo.co/starter/ionic-boilerplate.git"
+    },
+    "author": {
+        "name": "Lei SHI",
+        "email": "foxshee@gmail.com",
+        "url": "http://5neo.be"
+    },
+    "engines": {
+        "node": "5,0,0",
+        "npm": "3.0.0"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "bower": "^1.3.3",
+        "shelljs": "^0.3.0",
+        "del": "2.2.0",
+        "open": "0.0.5",
+        "yargs": "^3.32.0",
+        "gulp": "^3.8.10",
+        "gulp-concat": "^2.2.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-util": "^3.0.7",
+        "gulp-notify": "2.2.0",
+        "gulp-if": "^2.0.0",
+        "gulp-shell": "^0.2.11",
+        "gulp-sequence": "0.4.4",
+        "gulp-watch": "4.3.5",
+        "gulp-watch-sequence": "1.0.0",
+        "gulp-sass": "^2.0.4",
+        "gulp-minify-css": "^0.3.0",
+        "gulp-strip-debug": "^1.0.2",
+        "gulp-uglify": "^1.1.0",
+        "gulp-jshint": "2.0.0",
+        "jshint": "2.9.1",
+        "jshint-stylish": "^2.1.0",
+        "browserify": "^11.0.1",
+        "browserify-shim": "^3.8.8",
+        "browserify-ngannotate": "2.0.0",
+        "vinyl-source-stream": "1.1.0",
+        "vinyl-buffer": "1.0.0",
+        "watchify": "3.7.0",
+        "gulp-ng-annotate": "1.1.0",
+        "gulp-sourcemaps": "1.6.0",
+        "gulp-streamify": "^1.0.2",
+        "bulk-require": "^0.2.1",
+        "brfs": "1.4.3",
+        "bulkify": "1.1.1",
+        "require-dir": "^0.3.0",
+        "karma": "0.13.19",
+        "chai": "^3.4.1",
+        "mocha": "^2.3.3",
+        "sinon": "^1.17.2",
+        "angular-mocks": "^1.3.15",
+        "karma-chai": "^0.1.0",
+        "karma-mocha": "^0.2.1",
+        "karma-sinon": "^1.0.4",
+        "karma-browserify": "^4.4.0",
+        "karma-ng-html2js-preprocessor": "^0.2.0",
+        "karma-chrome-launcher": "^0.2.1",
+        "karma-firefox-launcher": "^0.1.3",
+        "phantomjs": "1.9.19",
+        "karma-phantomjs-launcher": "0.2.3",
+        "karma-coverage": "0.5.3",
+        "isparta": "^4.0.0",
+        "browserify-istanbul": "0.2.1",
+        "protractor": "^3.0.0",
+        "gulp-protractor": "2.1.0",
+        "gulp-bump": "1.0.0",
+        "gulp-remember": "0.3.0",
+        "gulp-cached": "1.1.0",
+        "streamqueue": "1.1.1",
+        "gulp-autoprefixer": "3.1.0",
+        "gulp-strip-css-comments": "1.2.0",
+        "gulp-rev": "6.0.1",
+        "gulp-jshint-html-reporter": "0.1.3",
+        "gulp-preprocess": "2.0.0",
+        "gulp-iconfont": "5.0.1",
+        "gulp-iconfont-css": "2.0.0",
+        "lodash": "4.1.0",
+        "gulp-changed": "1.3.0",
+        "gulp-imagemin": "2.4.0",
+        "gulp-angular-templatecache": "1.8.0",
+        "gulp-inject": "3.0.0",
+        "event-stream": "3.3.2",
+        "glob-all": "3.0.1",
+        "ripple-emulator": "^0.9.28",
+        "run-sequence": "1.1.5",
+        "beepbeep": "1.2.0",
+        "express": "4.13.4",
+        "livereload": "0.4.1",
+        "connect-livereload": "0.5.4",
+        "gulp-livereload": "3.8.1",
+        "dateformat": "1.0.12",
+        "semver": "5.1.0",
+        "cordova-config": "0.6.2",
+        "angular": "1.4.9",
+        "angular-sanitize": "1.4.9",
+        "angular-animate": "1.4.9",
+        "angular-ui-router": "0.2.15"
+    },
+    "cordovaPlugins": [],
+    "cordovaPlatforms": [],
+    "scripts": {
+        "gulp": "./node_modules/.bin/gulp",
+        "install": "napa"
+    },
+    "browserify": {
+        "transform": [
+            "browserify-shim"
+        ]
+    },
+    "napa": {
+        "ionic": "driftyco/ionic-bower#v1.2.4",
+        "ng-cordova": "driftyco/ng-cordova#v0.1.24-alpha"
+    },
+    "browser": {
+        "ionic": "./node_modules/ionic/js/ionic.js",
+        "ng-cordova": "./node_modules/ng-cordova/dist/ng-cordova.js",
+        "ionic-angular": "./node_modules/ionic/js/ionic-angular.js"
+    },
+    "browserify-shim": {
+        "ionic": "ionic",
+        "ng-cordova": "ngCordova",
+        "ionic-angular": "ionic-angular"
+    },
+    "contributors": []
 }
