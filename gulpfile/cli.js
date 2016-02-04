@@ -12,6 +12,7 @@
     var path                    = require('path');
 
     var config                  = require('./config');
+    var logger                  = require('./util/logger');
     var pathBuilder             = require('./util/pathBuilder');
 
     //----------------------------------------------------------
@@ -59,11 +60,28 @@
                 default: 'dev',
                 describe: 'Specify the "environment" that app runs on. ',
                 type: 'string'
+            },
+            // App Versioning
+            'v' :{
+                alias: 'version',
+                demand: false,
+                default: 'patch',
+                describe: 'Specify the type when bumping the app version. Use with task `gulp bump-release`. ' +
+                'Possible options: major, premajor, minor, preminor, patch, prepatch, or prerelease. ',
+                type: 'string'
+            },
+            'preid' : {
+                alias: 'prerelease-id',
+                demand: false,
+                default: 'alpha',
+                describe: 'Specify the \"prerelease id\" when bumping the app version for \"prerelease\". Usually `alpha | beta | rc`. ',
+                type: 'string'
             }
         })
         .example('gulp -e|--emulate android', 'Load "Android emulator" to run the app.')
         .example('gulp -r|--run ios', 'Load "iOS device" to run the app.')
-        .example('gulp --env=prod', 'Set "environment" to be "production" mode.')
+        .example('gulp bump-release --v=prerelease', 'Bump app version for prerelease.')
+        .example('gulp bump-release --v=prerelease --preid=beta', 'Bump app version for "beta" prerelease.')
         .argv
     ;
 
@@ -81,11 +99,15 @@
     var requiredBuild = (args.build || inEmulateMode || inRunMode || inReleaseMode);
 
     // Env.
-    gutil.log("Current Env.", args.environment);
+    logger.info('ENV', "Current Env.:", args.environment);
     var env = args.environment;
 
     gutil.log("requiredBuild", args.build, inReleaseMode, requiredBuild);
     var baseTargetFolderPath = path.resolve(requiredBuild ? config.getBuildPath() : config.getDevPath());
+
+    // Versioning
+    var bumpVersionType = args.v;
+    var bumpVersionPreID = args.preid;
 
     var exports = {
 
@@ -96,6 +118,9 @@
         inReleaseMode: inReleaseMode,
         requiredBuild: requiredBuild,
         baseTargetFolderPath: baseTargetFolderPath,
+
+        bumpVersionType: bumpVersionType,
+        bumpVersionPreID: bumpVersionPreID,
 
         // Func
         solveTargetFolderPath: solveTargetFolderPath,
