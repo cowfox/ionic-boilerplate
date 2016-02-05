@@ -9,6 +9,7 @@
     'use strict';
 
     var path        = require('path');
+    var pathBuilder = require('./util/pathBuilder');
 
     var config = {
 
@@ -262,7 +263,9 @@
             // The path array to the JS files that needs to be screened.
             lintFilePaths: [
                 // // Relative to 'scriptFolderPath'.
-                './**/*.js'
+                './**/*.js',
+                '!./**/*.cache.js', // exclude "templates cache" file
+                '!./**/*.+(unit|spec).js' // exclude "templates cache" file
             ],
             // By default, it uses `jshint-stylish`.
             // If `true`, it uses `gulp-jshint-html-reporter`.
