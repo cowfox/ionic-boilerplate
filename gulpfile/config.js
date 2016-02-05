@@ -287,6 +287,17 @@
 
 
         //----------------------------------------------------------
+        // Testing
+        //----------------------------------------------------------
+        test: {
+            karmaConfigFilePath: './tests/karma.conf.js',
+            protractorConfigFilePath: './tests/protractor.conf.js',
+            protractorTargets: [
+                '**/tests/**/*.spec.js'
+            ]
+        },
+
+        //----------------------------------------------------------
         // Helper Functions
         //----------------------------------------------------------
 
@@ -392,7 +403,7 @@
         },
 
         // Testing
-        test: {
+        tests: {
             // TODO The `configFile` inside gulp-karma take **relative** path......
             karma: '../../../tests/karma.conf.js',
             protractor: 'tests/protractor.conf.js',

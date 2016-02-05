@@ -1,15 +1,30 @@
-'use strict';
+/***********************************************************
+ *  \#\#\# Gulp Tasks - Ionic CLI Related \#\#\#
+ *
+ *
+ ***********************************************************/
 
-var gulp            = require('gulp');
-var Server          = require('karma').Server;
+(function () {
+    "use strict";
 
-var config          = require('../config');
+    var gulp            = require('gulp');
+    var Server          = require('karma').Server;
 
-gulp.task('unit', function(cb) {
+    var config          = require('../config');
 
-    new Server({
-        configFile: __dirname + config.test.karma,
-        singleRun: true
-    }, cb).start();
+    //----------------------------------------------------------
+    // Gulp Tasks
+    //----------------------------------------------------------
 
-});
+    gulp.task('unit', function(cb) {
+        new Server({
+            configFile: config.getBasePath(config.test.karmaConfigFilePath),
+            singleRun: true
+        }, cb).start();
+    });
+
+    //----------------------------------------------------------
+    // Internal Functions
+    //----------------------------------------------------------
+
+}());
