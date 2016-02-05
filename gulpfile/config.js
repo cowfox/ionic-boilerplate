@@ -298,9 +298,9 @@
          */
         getBasePath: function(additionalPath) {
             if (additionalPath !== undefined) {
-                return path.join(this.root.base, additionalPath);
+                return pathBuilder.pathResolve(this.root.base, additionalPath);
             }
-            return path.join(this.root.base);
+            return pathBuilder.pathResolve(this.root.base);
         },
 
         /**
@@ -311,9 +311,9 @@
          */
         getAppPath: function(additionalPath) {
             if (additionalPath !== undefined) {
-                return path.join(this.root.base, this.root.app, additionalPath);
+                return pathBuilder.pathResolve(path.join(this.root.base, this.root.app), additionalPath);
             }
-            return path.join(this.root.base, this.root.app);
+            return pathBuilder.pathResolve(this.root.base, this.root.app);
         },
 
         /**
@@ -324,9 +324,9 @@
          */
         getDevPath: function(additionalPath) {
             if (additionalPath !== undefined) {
-                return path.join(this.root.base, this.root.dev, additionalPath);
+                return pathBuilder.pathResolve(path.join(this.root.base, this.root.dev), additionalPath);
             }
-            return path.join(this.root.base, this.root.dev);
+            return pathBuilder.pathResolve(this.root.base, this.root.dev);
         },
 
         /**
@@ -337,9 +337,9 @@
          */
         getBuildPath: function(additionalPath) {
             if (additionalPath !== undefined) {
-                return path.join(this.root.base, this.root.build, additionalPath);
+                return pathBuilder.pathResolve(path.join(this.root.base, this.root.build), additionalPath);
             }
-            return path.join(this.root.base, this.root.build);
+            return pathBuilder.pathResolve(this.root.base, this.root.build);
         },
 
         /**
@@ -350,9 +350,9 @@
          */
         getVendorPath: function(additionalPath) {
             if (additionalPath !== undefined) {
-                return path.join(this.root.base, this.root.vendor, additionalPath);
+                return pathBuilder.pathResolve(path.join(this.root.base, this.root.vendor), additionalPath);
             }
-            return path.join(this.root.base, this.root.vendor);
+            return pathBuilder.pathResolve(this.root.base, this.root.vendor);
         },
 
         /**

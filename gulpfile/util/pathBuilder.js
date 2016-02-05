@@ -12,14 +12,15 @@
 (function () {
     "use strict";
 
-    var gulp    = require('gulp');
     var gutil   = require('gulp-util');
     var path    = require('path');
 
     var exports = {
         buildPathByAddingExtraPart: buildPathByAddingExtraPart,
         buildPathArrayFromBase: buildPathArrayFromBase,
-        buildPathArrayByAddingExtraPart: buildPathArrayByAddingExtraPart
+        buildPathArrayByAddingExtraPart: buildPathArrayByAddingExtraPart,
+
+        pathResolve: pathResolve
     };
 
     module.exports = exports;
@@ -40,7 +41,7 @@
         var newPathArray = [];
         pathArray.forEach(function(aPath) {
             if (aPath !== undefined) {
-                newPathArray.push(path.join(base, aPath));
+                newPathArray.push(pathResolve(base, aPath));
             }
         });
         return newPathArray;
@@ -91,6 +92,19 @@
     //----------------------------------------------------------
     // Internal Functions
     //----------------------------------------------------------
+
+    function pathResolve(aPath, bPath) {
+
+        if (bPath.indexOf('!') === 0) {
+            var bPathNew = bPath.substring(1);
+            var newPath = path.resolve(aPath, bPathNew);
+
+            return '!' + newPath;
+        }
+
+        return path.resolve(aPath, bPath);
+    }
+
 
 
 }());
