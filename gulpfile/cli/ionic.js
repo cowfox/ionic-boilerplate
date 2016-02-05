@@ -8,18 +8,18 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
-    var fs                      = require('fs');
-    var path                    = require('path');
+    //var gutil                   = require('gulp-util');
+    //var fs                      = require('fs');
+    //var path                    = require('path');
 
     var shell                   = require('gulp-shell');
 
-    var config                  = require('../config');
+    //var config                  = require('../config');
     var cli                     = require('../cli');
-    var logger                  = require('../util/logger');
-    var handleErr               = require('../util/handleErr');
-    var pathBuilder             = require('../util/pathBuilder');
-    var fileOP                  = require('../util/fileOP');
+    //var logger                  = require('../util/logger');
+    //var handleErr               = require('../util/handleErr');
+    //var pathBuilder             = require('../util/pathBuilder');
+    //var fileOP                  = require('../util/fileOP');
 
 
     //----------------------------------------------------------

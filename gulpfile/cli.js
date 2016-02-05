@@ -7,13 +7,13 @@
 (function () {
     'use strict';
 
-    var gulp                    = require('gulp');
+    //var gulp                    = require('gulp');
     var gutil                   = require('gulp-util');
     var path                    = require('path');
 
     var config                  = require('./config');
     var logger                  = require('./util/logger');
-    var pathBuilder             = require('./util/pathBuilder');
+    //var pathBuilder             = require('./util/pathBuilder');
 
     //----------------------------------------------------------
     // CLI helper info.
@@ -174,7 +174,7 @@
     function getEnvInfo() {
         return {
             NODE_ENV: config.env.envType[env]
-        }
+        };
     }
 
 }());

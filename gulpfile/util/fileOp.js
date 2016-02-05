@@ -6,12 +6,8 @@
 (function () {
     "use strict";
 
-    var gulp                    = require('gulp');
-    var path                    = require('path');
     var fs                      = require('fs');
 
-    var config                  = require('../config');
-    var cli                     = require('../cli');
     var logger                  = require('./logger');
 
     var exports = {
@@ -75,16 +71,16 @@
 
     function copyJsonNodes(sourceFIlePath, targetFilePath) {
 
-        var sourceJsonFile = this.readyJSONFile(sourceFIlePath);
-        var targetJsonFile = this.readyJSONFile(targetFilePath);
+        var sourceJsonFile = readyJSONFile(sourceFIlePath);
+        var targetJsonFile = readyJSONFile(targetFilePath);
 
         for (var key in sourceJsonFile) {
             if (sourceJsonFile.hasOwnProperty(key)) {
-                targetJsonFile[key] = sourceJsonFile[key]
+                targetJsonFile[key] = sourceJsonFile[key];
             }
         }
 
-        this.writeJSONFile(targetFilePath, targetJsonFile);
+        writeJSONFile(targetFilePath, targetJsonFile);
     }
 
 }());

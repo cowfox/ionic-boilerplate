@@ -7,7 +7,6 @@
 (function () {
     "use strict";
 
-    var gulp                    = require('gulp');
     var gutil                   = require('gulp-util');
 
     var msgPrefix = '----| Gulp Flow |==[-';

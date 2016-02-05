@@ -23,8 +23,6 @@
 
     module.exports = function(spaces) {
         return streamMap(function(file, cb) {
-            var stream = this;
-
             var replacer = through(function(data) {
                 var formatted = JSON.stringify(JSON.parse(data.toString()), null, spaces);
 

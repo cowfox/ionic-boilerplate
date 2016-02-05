@@ -9,9 +9,9 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
-    var gulpif                  = require('gulp-if');
-    var fs                      = require('fs');
+    //var gutil                   = require('gulp-util');
+    //var gulpif                  = require('gulp-if');
+    //var fs                      = require('fs');
     var path                    = require('path');
     var inject                  = require('gulp-inject');
 
@@ -19,7 +19,7 @@
     var cli                     = require('../cli');
     var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
-    var pathBuilder             = require('../util/pathBuilder');
+    //var pathBuilder             = require('../util/pathBuilder');
 
     // Gulp task name
     var taskName = "index";

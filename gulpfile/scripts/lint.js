@@ -13,9 +13,9 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
-    var fs                      = require('fs');
-    var path                    = require('path');
+    //var gutil                   = require('gulp-util');
+    //var fs                      = require('fs');
+    //var path                    = require('path');
 
     var jshint                  = require('gulp-jshint');
 
@@ -69,7 +69,7 @@
                 }))
                 .on('end', function() {
                     logger.info(taskName,
-                        "JSHint Report outputted to:", outputPath);
+                        "JSHint Report outputted to:", outputPath, "\n with the source files", scriptFilePaths);
                 });
         } else {
             var lintReporter = require('jshint-stylish');

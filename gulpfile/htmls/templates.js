@@ -9,10 +9,10 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
+    //var gutil                   = require('gulp-util');
     var gulpif                  = require('gulp-if');
-    var fs                      = require('fs');
-    var path                    = require('path');
+    //var fs                      = require('fs');
+    //var path                    = require('path');
     var changed                 = require('gulp-changed');
 
     var config                  = require('../config');
@@ -56,7 +56,7 @@
                 logger.info(taskName,
                     "templateCache used:", config.htmls.templatesCacheUsed,
                     "Template copied to the folder:", outputTemplatesFolderPath, "with the source files:", inputTemplatesFilePaths);
-            });;
+            });
     });
 
     //----------------------------------------------------------

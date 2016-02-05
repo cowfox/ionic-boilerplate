@@ -7,12 +7,10 @@
 (function () {
     "use strict";
 
-    var gulp        = require('gulp');
     var notify      = require('gulp-notify');
 
     var beep        = require('beepbeep');
 
-    var config      = require('../config');
     var cli         = require('../cli');
     var logger      = require('./logger');
 

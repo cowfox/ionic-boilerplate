@@ -10,16 +10,16 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
-    var fs                      = require('fs');
-    var path                    = require('path');
+    //var gutil                   = require('gulp-util');
+    //var fs                      = require('fs');
+    //var path                    = require('path');
 
     var runSequence             = require('run-sequence');
 
-    var config                  = require('./config');
-    var cli                     = require('./cli');
-    var handleErr               = require('./util/handleErr');
-    var pathBuilder             = require('./util/pathBuilder');
+    //var config                  = require('./config');
+    //var cli                     = require('./cli');
+    //var handleErr               = require('./util/handleErr');
+    //var pathBuilder             = require('./util/pathBuilder');
 
     // Gulp task name
     var taskName = "vendor";

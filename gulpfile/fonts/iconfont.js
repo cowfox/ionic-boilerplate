@@ -15,9 +15,9 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
-    var fs                      = require('fs');
-    var path                    = require('path');
+    //var gutil                   = require('gulp-util');
+    //var fs                      = require('fs');
+    //var path                    = require('path');
     var iconfont                = require('gulp-iconfont');
     var iconfontCss             = require('gulp-iconfont-css');
 
@@ -25,7 +25,7 @@
     var cli                     = require('../cli');
     var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
-    var pathBuilder             = require('../util/pathBuilder');
+    //var pathBuilder             = require('../util/pathBuilder');
 
     var taskName = "iconfont";
 

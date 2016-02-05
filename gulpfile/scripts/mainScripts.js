@@ -21,13 +21,13 @@
     "use strict";
 
     var gulp                = require('gulp');
-    var gutil               = require('gulp-util');
+    //var gutil               = require('gulp-util');
     var gulpif              = require('gulp-if');
 
     var browserify          = require('browserify');
     var ngAnnotate          = require('browserify-ngannotate');
-    var brfs                = require('brfs');
-    var bulkify             = require('bulkify');
+    //var brfs                = require('brfs');
+    //var bulkify             = require('bulkify');
 
     var streamify           = require('gulp-streamify');
     var uglify              = require('gulp-uglify');
@@ -35,9 +35,8 @@
     var source              = require('vinyl-source-stream');
     var buffer              = require('vinyl-buffer');
 
-    var glob                = require('glob-all');
-    var es                  = require('event-stream');
-    var rename              = require("gulp-rename");
+    //var glob                = require('glob-all');
+    //var rename              = require("gulp-rename");
 
     var config              = require('../config');
     var cli                 = require('../cli');

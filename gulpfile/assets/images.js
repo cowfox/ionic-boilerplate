@@ -8,10 +8,10 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
+    //var gutil                   = require('gulp-util');
     var gulpif                  = require('gulp-if');
-    var fs                      = require('fs');
-    var path                    = require('path');
+    //var fs                      = require('fs');
+    //var path                    = require('path');
     var changed                 = require('gulp-changed');
     var imagemin                = require('gulp-imagemin');
 

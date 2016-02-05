@@ -12,8 +12,6 @@
     "use strict";
 
     var gulp                    = require('gulp');
-    var gutil                   = require('gulp-util');
-    var fs                      = require('fs');
     var path                    = require('path');
 
     var preprocess              = require('gulp-preprocess');
@@ -24,14 +22,14 @@
     var autoprefixer            = require('gulp-autoprefixer');
     var stripCssComments        = require('gulp-strip-css-comments');
     var concat                  = require('gulp-concat');
-    var rev                     = require('gulp-rev');
+    //var rev                     = require('gulp-rev');
     var minifyCss               = require('gulp-minify-css');
 
     var config                  = require('../config');
     var cli                     = require('../cli');
     var logger                  = require('../util/logger');
     var handleErr               = require('../util/handleErr');
-    var pathBuilder             = require('../util/pathBuilder');
+    //var pathBuilder             = require('../util/pathBuilder');
 
     // Gulp task name
     var taskName = "main-styles";
