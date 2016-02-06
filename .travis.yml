@@ -27,18 +27,18 @@ install:
 
   # Install `napa` so that we can install `non-NodeJS` package under `node_modules` folder.
   - npm install -g napa
-  - npm install -g bower
   - npm install -g gulp
   - npm install -g cordova
   - npm install -g ionic
   # Added based on `npm install` warning
   - npm install -g phantomjs svgicons2svgfont marked jshint node-gyp ttf2woff2
+  - npm install -g bower
 
   # Do a `npm update` to ensure all dependncies
   - npm update -g
 
   # Make sure all package works.
-  -  bower -v
+  - bower -v
   - gulp -v
   - cordova -v
   - ionic -v
