@@ -201,6 +201,7 @@
             },
 
             // ----
+            // @deprecated, use `gulp-cssnano` instead.
             // Options for minfyCSS
             // Based on "CleanCSS" - {@link https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-api}.
             // ----

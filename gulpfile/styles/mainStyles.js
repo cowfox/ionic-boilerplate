@@ -23,7 +23,9 @@
     var stripCssComments        = require('gulp-strip-css-comments');
     var concat                  = require('gulp-concat');
     //var rev                     = require('gulp-rev');
-    var minifyCss               = require('gulp-minify-css');
+    // @deprecated
+    //var minifyCss               = require('gulp-minify-css');
+    var cssnano                 = require('gulp-cssnano');
 
     var config                  = require('../config');
     var cli                     = require('../cli');
@@ -78,7 +80,7 @@
         return streamqueue({ objectMode: true }, sassStream)
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.init()))// Only need it when in "release" mode.
             .pipe(autoprefixer(config.styles.autoprefixerOptions))
-            .pipe(gulpif(cli.inReleaseMode, minifyCss(config.styles.minifyCssOptions)))
+            .pipe(gulpif(cli.inReleaseMode, cssnano()))
             .pipe(concat(outputCssFilename))
             .pipe(gulpif(cli.inReleaseMode, stripCssComments()))// Only need it when in "release" mode.
             //.pipe(gulpif(cli.inReleaseMode, rev()))// Only need it when in "release" mode.
