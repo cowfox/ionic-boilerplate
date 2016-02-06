@@ -145,9 +145,9 @@
  * - "gulp-sass": "^2.0.4"
  *  - sass plugin
  *  - https://www.npmjs.com/package/g
- * - "gulp-minify-css": "^0.3.0"
- *  - gulp plugin to minify CSS, using clean-css.
- *  - https://www.npmjs.com/package/gulp-minify-css
+ * - "gulp-cssnano": "2.1.0"
+ *  - Minify CSS with cssnano.
+ *  - https://www.npmjs.com/package/gulp-cssnano
  * - "gulp-autoprefixer": "3.1.0"
  *  - Prefix CSS with **Autoprefixer**
  *  - https://www.npmjs.com/package/gulp-autoprefixer
@@ -226,6 +226,9 @@
  * - "karma": "0.13.19"
  *  - Spectacular Test Runner for JavaScript.
  *  - https://www.npmjs.com/package/karma
+ * - "karma-htmlfile-reporter": "0.2.2"
+ *  - A Karma plugin. Report results in styled html format.
+ *  - https://www.npmjs.com/package/karma-htmlfile-reporter
  * - "protractor": "3.0.0"
  *  - Webdriver E2E test wrapper for Angular.
  *  - https://www.npmjs.com/package/protractor
