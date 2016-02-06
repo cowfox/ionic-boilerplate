@@ -1,0 +1,100 @@
+
+
+language: objective-c
+
+# OS
+os: osx
+
+# Xcode version
+osx_image: xcode7.2
+
+# -------------------------------------------------------------------------------
+# ## "Pre-setup"
+#
+# If `before_install`, `install` or `before_script` return a non-zero exit code, the build is errored and stops immediately.
+# -------------------------------------------------------------------------------
+
+# you can install additional dependencies required by your project
+# such as NodeJS packages or custom services.
+before_install:
+  - export LANG=en_US.UTF-8
+  - brew update
+
+install:
+  - npm install -g npm@3.0.0
+  - npm install -g gulp cordova ionic
+  - npm install
+
+before_script:
+#  - ./scripts/decrypt-key.sh
+#  - ./scripts/add-key.sh
+
+# -------------------------------------------------------------------------------
+# ## Main "Script" Sequence
+#
+# If `script` returns a non-zero exit code, the build is failed, but continues to run before being marked as failed.
+# -------------------------------------------------------------------------------
+script:
+
+gulp
+#  - ionic platform add ios
+#  - ionic plugin add cordova-plugin-app-version
+#  - ionic plugin add cordova-plugin-network-information
+#  - ionic plugin add ionic-plugin-keyboard
+#  - ionic plugin add cordova-plugin-x-toast
+#  - ionic plugin add phonegap-plugin-push
+#  - ionic build ios --device --release
+#  - ionic build ios --device --release
+
+# -------------------------------------------------------------------------------
+# ## "Post-setup"
+#
+# The `after_success`, `after_failure`, `after_script` and subsequent stages do not affect the the build result.
+# -------------------------------------------------------------------------------
+
+# Perform additional steps when your build succeeds.
+# Such as: building documentation, deploying to a custom server, cleanning up.
+after_success:
+#  - ./scripts/package-and-upload.sh
+
+# Perform additional steps when your build fails.
+after_failure:
+
+after_script: false
+
+# -------------------------------------------------------------------------------
+# ## "Deployment"
+#
+# An optional phase.
+#
+# When deploying files to a provider, prevent Travis CI from resetting your working directory and deleting all changes
+# made during the build (`git stash --all`) by adding `skip_cleanup` to your `.travis.yml`:
+# -------------------------------------------------------------------------------
+
+# @optional
+# You can run steps before a deploy by using the `before_deploy` phase.
+# A non-zero exit code in this command will mark the build as errored.
+before_deploy: false
+
+# @optional
+deploy: false
+#  skip_cleanup: true
+
+# @optional
+# If there are any steps you’d like to run after the deployment, you can use the `after_deploy` phase.
+after_deploy: false
+
+
+
+# Send notificaiton
+notifications:
+#  hipchat: XXXXX@Your Room
+
+env:
+  global:
+#  - APP_NAME="YourApp"
+#  - DEVELOPER_NAME="iPhone Distribution: Company LLC (IOSAPPID)"
+#  - PROFILE_NAME="PROFILE_NAME"
+#  - PROFILE_UUID="11111-11111-1111111-111111-11111"
+#  - DELIVER_WHAT_TO_TEST="Awesome New Features!"
+#  - HOCKEYAPP_UPLOAD_BRANCH="master"
