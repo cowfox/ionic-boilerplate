@@ -292,11 +292,11 @@
         //----------------------------------------------------------
         // Testing
         //----------------------------------------------------------
-        test: {
+        tests: {
             karmaConfigFilePath: './tests/karma.conf.js',
             protractorConfigFilePath: './tests/protractor.conf.js',
-            protractorTargets: [
-                '**/tests/**/*.spec.js'
+            protractorTargetFilePaths: [
+                './**/tests/**/*.spec.js'
             ]
         },
 
@@ -314,7 +314,7 @@
             if (additionalPath !== undefined) {
                 return pathBuilder.pathResolve(this.root.base, additionalPath);
             }
-            return pathBuilder.pathResolve(this.root.base);
+            return this.root.base;
         },
 
         /**
