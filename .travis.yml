@@ -36,7 +36,9 @@ before_script:
 # -------------------------------------------------------------------------------
 script:
 
-gulp
+# Single Gulp task that runs all inspects and tests, such as `lint`, `unit test`, `e2e test`
+gulp tests 
+
 #  - ionic platform add ios
 #  - ionic plugin add cordova-plugin-app-version
 #  - ionic plugin add cordova-plugin-network-information
