@@ -21,13 +21,19 @@ before_install:
   - brew update
 
 install:
+  # NPM global packages
   - npm install -g npm@3.0.0
   - npm install -g gulp cordova ionic
+  - npm install -g bower
+  # - npm install -g marked jshint node-gyp ttf2woff2 svgicons2svgfont
   - npm install
+  - bower install
 
 before_script:
 #  - ./scripts/decrypt-key.sh
 #  - ./scripts/add-key.sh
+  # Install `webdriver-manager` for protractor e2e tests
+  - ./node_modules/protractor/bin/webdriver-manager update
 
 # -------------------------------------------------------------------------------
 # ## Main "Script" Sequence
