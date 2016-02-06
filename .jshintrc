@@ -60,14 +60,14 @@
   "notypeof"      : false,     // true: Tolerate invalid typeof operator values
   "proto"         : false,     // true: Tolerate using the `__proto__` property
   "scripturl"     : false,     // true: Tolerate script-targeted URLs
-  "shadow"        : false,     // true: Allows re-define variables later in code e.g. `var x=1; x=2;`
+  "shadow"        : false,     // true: Allows re-define variables later in scripts e.g. `var x=1; x=2;`
   "sub"           : false,     // true: Tolerate using `[]` notation when it can still be expressed in dot notation
   "supernew"      : false,     // true: Tolerate `new function () { ... };` and `new Object;`
   "validthis"     : false,     // true: Tolerate using this in a non-constructor function
 
   // Environments
   "browser"       : true,     // Web Browser (window, document, etc)
-  "browserify"    : true,    // Browserify (node.js code in the browser)
+  "browserify"    : true,    // Browserify (node.js scripts in the browser)
   "couch"         : false,    // CouchDB
   "devel"         : true,     // Development/debugging (alert, confirm, etc)
   "dojo"          : false,    // Dojo Toolkit
