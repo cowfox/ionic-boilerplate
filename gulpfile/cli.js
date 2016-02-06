@@ -19,31 +19,31 @@
     // CLI helper info.
     //----------------------------------------------------------
     var args = require('yargs')
-        .usage('Usage: gulp [options] [platform]')
+        .usage('Usage: gulp [task] [options]')
         .help('h')
         .alias('h', 'help')
-        .describe('h', 'Show "NEW" options added to "gulp" cmd.')
+        .describe('h', 'Show "Extended" commands added to "Gulp" CLI.')
         .options({
             // App Running Mode
             'build' :{
                 alias: 'build-app',
                 demand: false,
                 default: false,
-                describe: 'Build the app from "app/" into "www/" folder without "minification" done.',
+                describe: 'Build the app from "app/" into "www/" folder without "Styles and Scripts minification" done.',
                 type: 'boolean'
             },
             'release' :{
                 alias: 'release-app',
                 demand: false,
                 default: false,
-                describe: 'Release the app as package. "Build" is required - with all "optimizations" done.',
+                describe: 'Prepare for "App Package". "App Build" is required - with "Styles and Scripts minification" done.',
                 type: 'boolean'
             },
             'e' :{
                 alias: 'emulate',
                 demand: false,
                 default: '',
-                describe: 'Load "emulator" to run the app. App build is done first.',
+                describe: 'Load "emulator" to run the app. "App Build" is required. Based on `ionic emulate [platform]`. ',
                 type: 'string'
             },
             // TODO The current `gulp-shell` does not support **conditional run**.
@@ -51,14 +51,14 @@
                 alias: 'target-emulator',
                 demand: false,
                 default: '',
-                describe: 'The target iOS emulator',
+                describe: 'The target emulator.',
                 type: 'string'
             },
             'r' :{
                 alias: 'run',
                 demand: false,
                 default: '',
-                describe: 'Load "device" to run the app. App build is done first.',
+                describe: 'Load "device" to run the app. "App Build" is required. Based on `ionic run [platform]`.',
                 type: 'string'
             },
             // Env.
@@ -66,7 +66,7 @@
                 alias: 'environment',
                 demand: false,
                 default: 'dev',
-                describe: 'Specify the "environment" that app runs on. ',
+                describe: 'Specify the "build environment", such as "dev", "staging", "staging", "production", etc. ',
                 type: 'string'
             },
             // App Versioning
@@ -74,8 +74,8 @@
                 alias: 'version',
                 demand: false,
                 default: 'patch',
-                describe: 'Specify the type when bumping the app version. Use with task `gulp bump-release`. ' +
-                'Possible options: major, premajor, minor, preminor, patch, prepatch, or prerelease. ',
+                describe: 'Specify the type when bumping app "release" version. Use with task `gulp bump-release`. ' +
+                'Possible options: major, premajor, minor, preminor, patch, prepatch, or prerelease (based on "semver")',
                 type: 'string'
             },
             'preid' : {

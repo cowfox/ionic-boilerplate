@@ -376,48 +376,6 @@
          */
         getManifestFile: function() {
             return this.getAppPath(this.appInfo.manifest);
-        },
-
-
-        /////////////////////////////////
-
-
-        // Base src dir
-        baseDir: path.join(__dirname,  '../'),  // Project Root
-        devSrcDir: '.tmp',
-        buikdSrcDir: 'www',
-
-        // Env. (development | production)
-        inProd : false,
-
-        // browserify
-        browserify: {
-            entries: 'js/app.module.js',
-            bundleFile: 'app.bundle.js',
-            dest: 'js/bundles/',
-            sourceMapInProd: false
-        },
-
-        // Clean
-        clean: {
-            cleanPath: [
-                'js/bundles/'
-            ]
-        },
-
-        // Testing
-        tests: {
-            // TODO The `configFile` inside gulp-karma take **relative** path......
-            karma: '../../../tests/karma.conf.js',
-            protractor: 'tests/protractor.conf.js',
-            protractorTargets: [
-                '**/tests/**/*.spec.js'
-            ]
-        },
-
-        // Utils
-        path: function(relativePath) {
-            return this.srcDir + relativePath;
         }
 
     };

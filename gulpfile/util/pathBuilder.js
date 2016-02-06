@@ -15,6 +15,8 @@
     var gutil   = require('gulp-util');
     var path    = require('path');
 
+    var logger  = require('./logger');
+
     var exports = {
         buildPathByAddingExtraPart: buildPathByAddingExtraPart,
         buildPathArrayFromBase: buildPathArrayFromBase,
@@ -37,7 +39,6 @@
      * @returns {Array} The path array that has "base dir" added.
      */
     function buildPathArrayFromBase(base, pathArray) {
-
         var newPathArray = [];
         pathArray.forEach(function(aPath) {
             if (aPath !== undefined) {
@@ -84,7 +85,8 @@
         var basename = path.basename(aPath, path.extname(aPath));
         basename += "." + extraPart;
 
-        gutil.log("Add an extra part to the pat:", extraPart, aPath, path.join(path.dirname(aPath), basename + path.extname(aPath)));
+        logger.log("pathBuilder",
+            "Add an extra part to the pat:", extraPart, aPath, path.join(path.dirname(aPath), basename + path.extname(aPath)));
         return path.join(path.dirname(aPath), basename + path.extname(aPath));
     }
 
@@ -95,7 +97,9 @@
 
     function pathResolve(aPath, bPath) {
 
-        if (bPath.indexOf('!') === 0) {
+        //logger.info("pathBuilder", "from:", aPath, "and", bPath);
+
+        if (typeof bPath === 'string' && bPath.indexOf('!') === 0) {
             var bPathNew = bPath.substring(1);
             var newPath = path.resolve(aPath, bPathNew);
 

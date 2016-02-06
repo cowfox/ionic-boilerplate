@@ -27,7 +27,7 @@
     // Gulp task name
     var taskName = "serve";
 
-    //
+    // Express Server
     var server = null;
 
     //----------------------------------------------------------

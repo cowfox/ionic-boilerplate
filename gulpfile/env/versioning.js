@@ -53,7 +53,15 @@
 
     gulp.task('bump', function() {
         logger.info('bump',
-            "Use the following Gulp tasks to bump your app version. ",
+            "\n Use the following Gulp tasks to bump your app version. ",
+            "\n`gulp bump-build` - Bump the \"Build #\".",
+            "\n`gulp bump-dev` - Bump the \"Dev Version #\".",
+            "\n`gulp bump-release -v=prerelease --preid=beta` - Bump the \"Release Version #\" based on \"semver\" standard.");
+    });
+
+    gulp.task('versioning', function() {
+        logger.info('bump',
+            "\n Use the following Gulp tasks to bump your app version. ",
             "\n`gulp bump-build` - Bump the \"Build #\".",
             "\n`gulp bump-dev` - Bump the \"Dev Version #\".",
             "\n`gulp bump-release -v=prerelease --preid=beta` - Bump the \"Release Version #\" based on \"semver\" standard.");
