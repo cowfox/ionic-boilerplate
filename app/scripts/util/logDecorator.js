@@ -8,9 +8,9 @@
     "use strict";
 
 
-    app.config(function( $provide )
+    app.config(function($provide)
     {
-        $provide.decorator( '$log', function( $delegate )
+        $provide.decorator( '$log', function($delegate)
         {
             // Save the original $log.debug()
             var debugFn = $delegate.debug;

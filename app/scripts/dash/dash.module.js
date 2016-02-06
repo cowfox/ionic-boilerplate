@@ -24,9 +24,9 @@ var bulk = require('bulk-require');
 // ignored.
 var angularElements = bulk(__dirname, ['./**/!(*.module|*.spec).js']);
 
-// Load Angular Module Processor
-var processor = require('../app.module.processor');
-processor.angularModuleProcessor(dashModule, angularElements);
+// Load Angular Module Declarator
+var moduleDeclarator = require('../module.declarator');
+moduleDeclarator.angularModuleDeclarator(dashModule, angularElements);
 
 module.exports = dashModule;
 

@@ -24,8 +24,8 @@ var bulk = require('bulk-require');
 // ignored.
 var angularElements = bulk(__dirname, ['./**/!(*.module|*.unit|*.spec).js']);
 
-// Load Angular Module Processor
-var processor = require('../app.module.processor');
-processor.angularModuleProcessor(chatsModule, angularElements);
+// Load Angular Module Declarator
+var moduleDeclarator = require('../module.declarator');
+moduleDeclarator.angularModuleDeclarator(chatsModule, angularElements);
 
 module.exports = chatsModule;

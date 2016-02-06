@@ -1,25 +1,37 @@
-'use strict';
 
-describe('Unit: Chats Factory', function() {
 
-    var factory;
+(function () {
+    "use strict";
 
-    beforeEach(function() {
-        // instantiate the app module
-        angular.mock.module('app.chats');
+    var expect          = require("chai").expect;
+    var angular         = require("angular");
+    require("angular-mock");
 
-        // mock the service
-        angular.mock.inject(function(chatsFactory) {
-            factory = chatsFactory;
+    // Require "main" module file.
+    require('../chats.module');
+
+    describe('ChatsFactory', function() {
+
+        var factory;
+
+        beforeEach(function() {
+            // instantiate the app module
+            angular.mock.module('app.chats');
+
+            // mock the service
+            angular.mock.inject(function(chatsFactory) {
+                factory = chatsFactory;
+            });
+        });
+
+        it('should exist', function() {
+            expect(factory).to.be.defined;
+        });
+
+        it('should retrieve 5 data entries', function() {
+            var chats = factory.all();
+            expect(Object.keys(chats).length).to.equal(5);
         });
     });
 
-    it('should exist', function() {
-        expect(factory).toBeDefined();
-    });
-
-    it('should retrieve data', function() {
-        var chats = factory.all();
-        expect(Object.keys(chats).length).toEqual(5);
-    });
-});
+}());
