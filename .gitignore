@@ -25,6 +25,7 @@ build/
 coverage/
 jshint-output.html
 *.cache.*
+resources/
 
 ## Production folder
 www/
