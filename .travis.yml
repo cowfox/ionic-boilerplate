@@ -23,10 +23,23 @@ before_install:
 install:
   # NPM global packages
   - npm install -g npm@3.0.0
+  - npm -v
+
   # Install `napa` so that we can install `non-NodeJS` package under `node_modules` folder.
   - npm install -g napa
-  - npm install -g gulp cordova ionic
-  - npm install -g bower
+  # - npm install -g bower
+  - npm install -g gulp
+  - npm install -g cordova
+  - npm install -g ionic
+
+  # Do a `npm update` to ensure all dependncies
+  - npm update -g
+
+  # Make sure all package works.
+  # bower -v
+  - gulp -v
+  - cordova -v
+  - ionic -v
   # - npm install -g marked jshint node-gyp ttf2woff2 svgicons2svgfont
   - npm install
   - bower install
