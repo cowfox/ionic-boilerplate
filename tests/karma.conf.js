@@ -116,6 +116,17 @@
             dir : '../reports/coverage/'
         },
 
+        // Be sure to list "ALL" plugins used.
+        plugins: [
+            'karma-browserify',
+            'karma-mocha',
+            'karma-chai',
+            'karma-sinon',
+            'karma-coverage',
+            'karma-htmlfile-reporter',
+            'karma-phantomjs-launcher'
+        ],
+
         // web server port
         port: 9876,
 
