@@ -1,31 +1,48 @@
-'use strict';
+/***********************************************************
+ *  \#\#\# Gulp Helper - Error Handler \#\#\#
+ *
+ *
+ ***********************************************************/
 
-var gulp    = require('gulp');
-var notify  = require('gulp-notify');
+(function () {
+    "use strict";
 
-var config = require('../config');
+    var gulp        = require( 'gulp' )
+    var gutil       = require('gulp-util')
+    var notify      = require('gulp-notify');
 
-module.exports = function(error) {
+    var cli         = require('../cli');
+    var logger      = require('./logger');
 
-    if(!config.inProd) {
-        // In `development` mode
+    /*
+        Export function directly.
+     */
+    module.exports = function(error) {
 
-        var args = Array.prototype.slice.call(arguments);
+        logger.error('errorHandler', error.toString());
 
-        // Send error to notification center with gulp-notify
-        notify.onError({
-            title: 'Compile Error',
-            message: '<%= error.message %>'
-        }).apply(this, args);
+        // If it is in "release" mode, end the whole process
+        // after certain error.
+        if (!cli.inReleaseMode) {
 
-        // Keep gulp from hanging on this task
-        this.emit('end');
+            var lineNumber = (error.lineNumber) ? 'LINE ' + error.lineNumber + ' -- ' : '';
 
-    } else {
-        // In `production` mode.
-        // Log the error and stop the process to prevent broken code from building.
-        console.log(error);
-        process.exit(1);
-    }
+            // Send error to notification center with gulp-notify
+            notify.onError({
+                title: '[Gulp Flow] Error: [' + error.plugin + '] ' + lineNumber,
+                message:  '<%= error.message %>'
+            });
+            // Seems that it need `write()` to work, but not sure which pacakge to load.
+            //}).write(error);
 
-};
+            gutil.beep();
+
+            // Keep gulp from hanging on this task
+            this.emit('end');
+        } else {
+            process.exit(1);
+        }
+
+    };
+
+}());

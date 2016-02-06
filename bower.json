@@ -1,7 +1,35 @@
 {
-  "name": "ionic-boilerplate",
-  "private": "true",
-  "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.2.4"
-  }
+    "name": "ionic-boilerplate",
+    "private": "true",
+    "build-version": "672",
+    "devDependencies": {
+        "ionic": "driftyco/ionic-bower#1.2.4"
+    },
+    "dev-version": "0.6.6-20160203",
+    "version": "0.7.0",
+    "description": "A project boilerplate for starting development with Ionic framework.",
+    "keywords": [
+        "ionic",
+        "boilerplate",
+        "angular",
+        "gulp",
+        "browserify",
+        "sass",
+        "karma",
+        "protractor",
+        "mocha",
+        "chai",
+        "sinon"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@stash.wuneo.co/starter/ionic-boilerplate.git"
+    },
+    "author": {
+        "name": "Lei SHI",
+        "email": "foxshee@gmail.com",
+        "url": "http://5neo.be"
+    },
+    "contributors": []
 }

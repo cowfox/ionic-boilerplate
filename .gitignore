@@ -8,8 +8,7 @@
 node_modules/
 
 ## Bower
-# Bower folder is defined in the file `www/lib`
-www/lib/
+bower_components/
 
 ## Cordova plugins
 plugins/
@@ -21,8 +20,15 @@ platforms/
 *.log
 
 ## Generated files
-bundles/
+build/
+.tmp/
 coverage/
+jshint-output.html
+*.cache.*
+resources/
+
+## Production folder
+www/
 
 ## Global `gitignore` (if needed)
 # OS generated files
