@@ -27,7 +27,7 @@ install:
 
   # Install `napa` so that we can install `non-NodeJS` package under `node_modules` folder.
   - npm install -g napa
-  # - npm install -g bower
+  - npm install -g bower
   - npm install -g gulp
   - npm install -g cordova
   - npm install -g ionic
@@ -38,20 +38,23 @@ install:
   - npm update -g
 
   # Make sure all package works.
-  # bower -v
+  -  bower -v
   - gulp -v
   - cordova -v
   - ionic -v
 
+before_script:
 
+  # Local dependencies
   - npm install
   - bower install
 
-before_script:
-#  - ./scripts/decrypt-key.sh
-#  - ./scripts/add-key.sh
   # Install `webdriver-manager` for protractor e2e tests
   - ./node_modules/protractor/bin/webdriver-manager update
+
+#  - ./scripts/decrypt-key.sh
+#  - ./scripts/add-key.sh
+
 
 # -------------------------------------------------------------------------------
 # ## Main "Script" Sequence
