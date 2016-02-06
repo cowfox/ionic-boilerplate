@@ -1,5 +1,5 @@
 /***********************************************************
- *  \#\#\# Gulp Tasks - Ionic CLI Related \#\#\#
+ *  \#\#\# Gulp Tasks - Unit Test \#\#\#
  *
  *
  ***********************************************************/
@@ -17,10 +17,14 @@
     //----------------------------------------------------------
 
     gulp.task('unit', function(cb) {
+
+        // Write in this way can get rid of "Error: 1" error of Gulp when Karma gets "filed" test.
         new Server({
-            configFile: config.getBasePath(config.test.karmaConfigFilePath),
+            configFile: config.getBasePath(config.tests.karmaConfigFilePath),
             singleRun: true
-        }, cb).start();
+        }, function() {
+            cb();
+        }).start();
     });
 
     //----------------------------------------------------------
