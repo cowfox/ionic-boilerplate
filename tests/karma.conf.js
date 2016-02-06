@@ -28,6 +28,7 @@
     var karmaBaseConfig = {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
+        // The `project root` should be `../` based on the location of this config file.
         cwd: process.cwd(),
 
 
@@ -75,11 +76,7 @@
             '../**/tests/**/*.unit.js': ['browserify']
         },
 
-        // test results reporter to use
-        // possible values: 'dots', 'progress'
-        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage'],
-
+        // browserify settings
         browserify: {
             debug: true,
             extensions: ['.js'],
@@ -97,6 +94,26 @@
                     ]
                 })
             ]
+        },
+
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'coverage', 'html'],
+
+        htmlReporter: {
+            outputFile: '../reports/unit-test.html',
+
+            // Optional
+            pageTitle: 'Unit Tests - ionic-boilerplate',
+            subPageTitle: 'A project boilerplate for starting development with Ionic framework.'
+        },
+
+        // optionally, configure the reporter
+        coverageReporter: {
+            type : 'html',
+
+            dir : '../reports/coverage/'
         },
 
         // web server port

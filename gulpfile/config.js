@@ -272,7 +272,7 @@
             // Make sure the related **Gulp Plugin** is installed.
             useLintHTMLReporter: true,
             // Relative to 'Project Root'.
-            lintHTMLOutputFilename: './jshint-output.html',
+            lintHTMLOutputFilename: './reports/jshint-output.html',
             // If need to also do scripts screening on Gulp Tasks files.
             needLintGulpTaskFiles: true,
             // Relative to 'Project Root'.
