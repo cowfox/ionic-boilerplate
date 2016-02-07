@@ -24,7 +24,7 @@
     var logger                  = require('../util/logger');
     //var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
-    var fileOP                  = require('../util/fileOP');
+    var fileOp                  = require('../util/fileOp');
 
     // Gulp task name
     var taskName = "appinfo";
@@ -39,7 +39,7 @@
         var targetFilePathArray = pathBuilder.buildPathArrayFromBase(config.root.base, config.appInfo.syncTargets);
 
         targetFilePathArray.forEach(function(filePath) {
-            fileOP.copyJsonNodes(manifestFilePath, filePath);
+            fileOp.copyJsonNodes(manifestFilePath, filePath);
             logger.info(taskName,
                 "App Info synced to:", filePath, "from:", manifestFilePath);
         });
@@ -55,7 +55,7 @@
 
     function upadteAppinfoToCordovaConfig(sourceFilePath, cordovaConfigFilePath) {
         var config = new cordovaConfig(cordovaConfigFilePath);
-        var sourceJsonFile = fileOP.readyJSONFile(sourceFilePath);
+        var sourceJsonFile = fileOp.readyJSONFile(sourceFilePath);
 
         /*
             Here are the info we need to update:

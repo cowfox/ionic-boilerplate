@@ -28,7 +28,7 @@
     var logger                  = require('../util/logger');
     //var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
-    var fileOP                  = require('../util/fileOP');
+    var fileOp                  = require('../util/fileOp');
 
     // Possible options for 'semver release type'
     var semverReleaseType = [
@@ -190,15 +190,15 @@
     function saveNewVersionToAllFiles(aKey, newVersion, targetFilePathArray) {
 
         targetFilePathArray.forEach(function(aFile) {
-            var json = fileOP.readyJSONFile(aFile);
+            var json = fileOp.readyJSONFile(aFile);
             json[aKey] = newVersion;
-            fileOP.writeJSONFile(aFile, json);
+            fileOp.writeJSONFile(aFile, json);
         });
     }
 
 
     function _getCurrentVersion(aKey) {
-        var json = fileOP.readyJSONFile(config.getManifestFile());
+        var json = fileOp.readyJSONFile(config.getManifestFile());
         var version = json[aKey];
 
         return version;
