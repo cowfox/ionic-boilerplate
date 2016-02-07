@@ -65,7 +65,7 @@
                 .pipe(jshint())
                 .pipe(jshint.reporter(lintHTMLReporter, {
                     filename: outputPath,
-                    createMissingFolders : false
+                    createMissingFolders : true
                 }))
                 .on('end', function() {
                     logger.info(taskName,
