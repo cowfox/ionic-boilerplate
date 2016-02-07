@@ -20,7 +20,6 @@
     //var pathBuilder             = require('./util/pathBuilder');
 
 
-
     // Gulp task name
     var taskName = "default";
 
@@ -45,8 +44,11 @@
                 'main-scripts'
             ],
             'index',
+            // Set ENV variables if need to do "build".
+            cli.requiredBuild ? 'noop' : 'set-env',
             cli.requiredBuild ? 'noop' : 'serve',
             cli.requiredBuild ? 'noop' : 'watch',
+            // Bump "Build #"
             cli.requiredBuild ? 'bump-build' : 'noop',
             cli.inEmulateMode ? ['ionic-emulate', 'watch'] : 'noop',
             cli.inRunMode ? 'ionic-run' : 'noop',

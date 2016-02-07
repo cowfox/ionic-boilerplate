@@ -169,12 +169,10 @@
     /**
      * Get the current env. info.
      *
-     * @returns {Object} The current Env.
+     * @returns {String} The current Env.
      */
     function getEnvInfo() {
-        return {
-            NODE_ENV: config.env.envType[env]
-        };
+        return config.env.envType[env];
     }
 
 }());

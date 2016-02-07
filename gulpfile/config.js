@@ -47,6 +47,34 @@
                 test: 'test',
                 staging: 'staging',
                 prod: 'production'
+            },
+
+            // ----
+            // Environment global variables
+            // ----
+            "global" : {
+            },
+
+            // ----
+            // Environment specific variables
+            // ----
+            "development": {
+                // The **name** of the **Code Signing Identity**.
+                XCODE_DEVELOPER_NAME: "iPhone Developer: Lei Shi (3Y46G6EDBE)",
+                // The filename (excluding file extension `.mobileprovision`) of provisioning profile.
+                XCODE_PROVISIONING_PROFILE_FILENAME: "xcode-profile-debug",
+                // The UUID of provisioning profile.
+                // It can be found inside the provisioning profile.
+                XCODE_PROVISIONING_PROFILE_UUID: "af5a35f8-73ec-416d-ac9e-625e7365ac8a"
+            },
+            "production": {
+                // The **name** of the **Code Signing Identity**.
+                XCODE_DEVELOPER_NAME: "iPhone Distribution: Lei Shi (3Y46G6EDBE)",
+                // The filename (excluding file extension `.mobileprovision`) of provisioning profile.
+                XCODE_PROVISIONING_PROFILE_FILENAME: "xcode-profile-release",
+                // The UUID of provisioning profile.
+                // It can be found inside the provisioning profile.
+                XCODE_PROVISIONING_PROFILE_UUID: "11111-11111-1111111-111111-11111"
             }
         },
 

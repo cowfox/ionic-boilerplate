@@ -265,6 +265,9 @@
  * - "gulp-shell": "0.5.2"
  *  - A handy command line interface for gulp.
  *  - https://www.npmjs.com/package/gulp-shell
+ * - "gulp-env": "0.4.0"
+ *  - Add env vars to your process.env.
+ *  - https://www.npmjs.com/package/gulp-env
  *
  */
 

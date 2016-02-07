@@ -70,7 +70,9 @@
 
         var sassStream = gulp.src(inputMainSassFilePaths)
             .pipe(preprocess({
-                context: cli.getEnvInfo()
+                context: {
+                    NODE_ENV: cli.getEnvInfo()
+                }
             }))
             .pipe(sass(sassOptions))
             .on('error', handleErr);
