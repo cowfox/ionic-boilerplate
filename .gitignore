@@ -26,6 +26,7 @@ coverage/
 jshint-output.html
 *.cache.*
 resources/
+reports/
 
 ## Production folder
 www/
