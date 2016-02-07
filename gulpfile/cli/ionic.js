@@ -26,6 +26,23 @@
     // Gulp Tasks
     //----------------------------------------------------------
 
+    // ionic platform
+    gulp.task('add-ios', ['set-env'], shell.task([
+        'ionic platform add ios'
+    ]));
+
+    gulp.task('remove-ios', ['set-env'], shell.task([
+        'ionic platform remove ios'
+    ]));
+
+    gulp.task('add-android', ['set-env'], shell.task([
+        'ionic platform add android'
+    ]));
+
+    gulp.task('remove-android', ['set-env'], shell.task([
+        'ionic platform remove android'
+    ]));
+
     // ionic state reset
     gulp.task('reset', shell.task([
         'ionic state reset'
