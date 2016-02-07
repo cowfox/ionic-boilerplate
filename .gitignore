@@ -27,6 +27,7 @@ jshint-output.html
 *.cache.*
 resources/
 reports/
+*.mocha.json
 
 ## Production folder
 www/

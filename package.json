@@ -115,6 +115,7 @@
         "gulp-protractor": "2.1.0",
         "chai-as-promised": "5.2.0",
         "karma-htmlfile-reporter": "0.2.2",
+        "karma-bamboo-reporter": "0.1.2",
         "gulp-cssnano": "2.1.0",
         "angular": "1.4.9",
         "angular-sanitize": "1.4.9",

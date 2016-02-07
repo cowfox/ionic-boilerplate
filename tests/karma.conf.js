@@ -99,7 +99,7 @@
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage', 'html'],
+        reporters: ['progress', 'bamboo', 'coverage', 'html'],
 
         htmlReporter: {
             outputFile: '../reports/unit-test.html',
@@ -116,6 +116,10 @@
             dir : '../reports/coverage/'
         },
 
+        bambooReporter:{
+            filename: 'unit-test.mocha.json'
+        },
+
         // Be sure to list "ALL" plugins used.
         plugins: [
             'karma-browserify',
@@ -124,7 +128,8 @@
             'karma-sinon',
             'karma-coverage',
             'karma-htmlfile-reporter',
-            'karma-phantomjs-launcher'
+            'karma-phantomjs-launcher',
+            'karma-bamboo-reporter'
         ],
 
         // web server port
