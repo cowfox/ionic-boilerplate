@@ -117,7 +117,8 @@
         },
 
         bambooReporter:{
-            filename: 'unit-test.mocha.json'
+            // By default, it is relative to **Project Root**, not the **current path of this config file**.
+            filename: 'reports/unit-test.mocha.json'
         },
 
         // Be sure to list "ALL" plugins used.

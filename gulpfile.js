@@ -235,6 +235,9 @@
  * - "gulp-protractor": "2.1.0"
  *  - A helper for protactor and gulp
  *  - https://www.npmjs.com/package/gulp-protractor
+ * - "install karma-bamboo-reporter": "0.1.2"
+ *  - A Karma plugin. Report results in bamboo json format.
+ *  - https://www.npmjs.com/package/karma-bamboo-reporter
  *
  *
  * ### Versioning
@@ -265,9 +268,9 @@
  *
  */
 
-var requireDir = require('require-dir')
+var requireDir = require('require-dir');
 
 // Require all tasks in `./gulpfile/`, including sub-folders.
 requireDir('./gulpfile', {
     recurse: true
-})
+});
