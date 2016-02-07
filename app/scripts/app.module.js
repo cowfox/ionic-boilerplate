@@ -6,17 +6,25 @@
 'use strict';
 
 /*
-    The list of **Required** libraries.
+    The list of **Required** libraries loaded as `External`.
 
-    Here, the list should be **identical** to the **lib list** inside your `vendor.js`.
+    Here, the list should be **identical** to the **lib list** under `vendorScriptFileBrowserifyRequireBundle`
+    in `Gulp config file`.
+
+    The list of libraries are loaded from your local **NPM** folder.
+    For those `browserify-shim` libraries, be sure to use the name defined in `browser` section.
  */
 var angular = require("angular");
-require("ionic");
-require("ionic-angular");
 require("angular-ui-router");
 require("angular-sanitize");
 require("angular-animate");
+// `browserify-shim` libraries
+require("ionic-js");
+require("ionic-angular");
 require("ng-cordova");
+/*
+    END of `External` libraries
+ */
 
 // App `basic` modules
 var appConstants = require('./app.constant');

@@ -241,20 +241,20 @@
             // ----
             vendorScriptFile: "vendor.js", // The filename of "output" JS file generated from all the vendors' JS files.
             //
-            // The list of bundles that are libraries (from vendors).
+            // The list of bundles that are loaded as "External" from the **app bundle**.
             //
-            // The "name" listed below should be defined in the `browserify-shim` section of `package.json` file.
-            // **NOT** the `export` part !!!!!
+            // If the libraries are from `browserify-shim`, the "name" should from the `browser` section of `package.json` file.
             //
             // {@link http://www.5neo.be/browserify-multiple-bundles-with-gulp-on-angularjs-project}
             vendorScriptFileBrowserifyRequireBundle: [
                 'angular',
-                'ionic',
                 'angular-ui-router',
                 'angular-sanitize',
                 'angular-animate',
-                'ionic-angular',
 
+                // `browserify-shim` libraries
+                'ionic-js',
+                'ionic-angular',
                 'ng-cordova'
             ],
 
