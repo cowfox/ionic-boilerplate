@@ -22,6 +22,7 @@ before_install:
 
 install:
   # NPM global packages
+  - node -v
   - npm install -g npm@3.0.0
   - npm -v
 
@@ -30,9 +31,12 @@ install:
   - npm install -g gulp
   - npm install -g cordova
   - npm install -g ionic
-  # Added based on `npm install` warning
-  - npm install -g phantomjs svgicons2svgfont marked jshint node-gyp ttf2woff2
   - npm install -g bower
+
+  # Install `phantomjs` package globally, and then set `PHANTOMJS_BIN`.
+  # Otherwise, `karma-phantomjs-launcher` will not find the PhantomJS binary to launch.
+  - npm install -g phantomjs
+  - export PHANTOMJS_BIN=/usr/lib/node_modules/phantomjs/lib/phantom/bin/phantomjs
 
   # Do a `npm update` to ensure all dependncies
   - npm update -g
@@ -46,7 +50,14 @@ install:
 before_script:
 
   # Local dependencies
-  - npm install
+  # Use `--unsafe-perm` flag to ensure `napa` is running to intall `non-nodeJS` packages.
+  #
+  # Ref:
+  # If npm was invoked with root privileges, then it will change the uid to the user account or uid specified
+  # by the `user` config, which defaults to `nobody`. Set the `unsafe-perm` flag to run scripts with root privileges.
+  #
+  #
+  - npm install --unsafe-perm
   - bower install
 
   # Install `webdriver-manager` for protractor e2e tests
@@ -63,8 +74,8 @@ before_script:
 # -------------------------------------------------------------------------------
 script:
 
-  # Single Gulp task that runs all inspects and tests, such as `lint`, `unit test`, `e2e test`
-  - gulp tests
+  # Single Gulp task that runs all inspects and tests, such as `lint`, `unit test`
+  - gulp unit
 
 #  - ionic platform add ios
 #  - ionic plugin add cordova-plugin-app-version
