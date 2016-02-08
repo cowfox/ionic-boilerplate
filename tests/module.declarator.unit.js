@@ -157,7 +157,7 @@
                 expect(module.filter.called).to.be.true;
             });
 
-            it("should ne able to ignore 'non-object elements'.", function() {
+            it("should be able to ignore 'non-object elements'.", function() {
 
                 var eleMap = {
                     "controller": {

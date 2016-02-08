@@ -40,6 +40,8 @@
                 'main-scripts'
             ],
             'index',
+
+            // Tasks for "Tests"
             'lint',
             'unit',
             'e2e',

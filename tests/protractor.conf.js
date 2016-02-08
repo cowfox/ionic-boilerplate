@@ -12,6 +12,7 @@
 
         framework: 'mocha',
         mochaOpts: {
+            //reporter: "spec",
             // Increase it if getting `timeout`.
             timeout: 15000
         },
@@ -25,6 +26,7 @@
         // seleniumServerJar, seleniumPort, seleniumArgs, sauceUser and sauceKey will be ignored."
         //
         // {@link http://www.protractortest.org/#/server-setup#standalone-selenium-server}
+        //
         //seleniumAddress: 'http://localhost:4444/wd/hub',
 
         baseUrl: 'http://localhost:8800',

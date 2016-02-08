@@ -85,7 +85,7 @@
         var basename = path.basename(aPath, path.extname(aPath));
         basename += "." + extraPart;
 
-        logger.log("pathBuilder",
+        logger.info("pathBuilder",
             "Add an extra part to the pat:", extraPart, aPath, path.join(path.dirname(aPath), basename + path.extname(aPath)));
         return path.join(path.dirname(aPath), basename + path.extname(aPath));
     }
