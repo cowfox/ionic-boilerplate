@@ -43,10 +43,10 @@
             // Use `gulp-preprocess` to help process the ENV configurations.
             // It depends on the env. variable `NODE_ENV" from NodeJS.
             envType: {
-                dev: 'development',
+                development: 'development',
                 test: 'test',
                 staging: 'staging',
-                prod: 'production'
+                production: 'production'
             },
 
             // ----

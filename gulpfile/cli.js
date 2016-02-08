@@ -65,8 +65,8 @@
             'env' :{
                 alias: 'environment',
                 demand: false,
-                default: 'dev',
-                describe: 'Specify the "build environment", such as "dev", "staging", "staging", "production", etc. ',
+                default: 'development',
+                describe: 'Specify the "build environment", such as "development", "staging", "staging", "production", etc. ',
                 type: 'string'
             },
             // App Versioning
