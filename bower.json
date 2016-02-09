@@ -3,7 +3,8 @@
     "private": "true",
     "build-version": "672",
     "devDependencies": {
-        "ionic": "driftyco/ionic-bower#1.2.4"
+        "ionic": "driftyco/ionic-bower#1.2.4",
+        "ng-cordova": "driftyco/ng-cordova#v0.1.24-alpha"
     },
     "dev-version": "0.6.6-20160203",
     "version": "0.7.0",

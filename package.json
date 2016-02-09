@@ -147,9 +147,9 @@
   },
   "browser": {
     "angular-mock": "./node_modules/angular-mocks/angular-mocks.js",
-    "ionic-js": "./node_modules/ionic-js/js/ionic.js",
-    "ng-cordova": "./node_modules/ng-cordova/dist/ng-cordova.js",
-    "ionic-angular": "./node_modules/ionic-js/js/ionic-angular.js"
+    "ionic-js": "./bower_components/ionic/js/ionic.js",
+    "ng-cordova": "./bower_components/ng-cordova/dist/ng-cordova.js",
+    "ionic-angular": "./bower_components/ionic/js/ionic-angular.js"
   },
   "browserify-shim": {
     "angular-mock": "ngMock",
