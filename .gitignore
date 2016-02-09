@@ -19,6 +19,9 @@ platforms/
 ## Log file
 *.log
 
+## Local files
+*.local.*
+
 ## Generated files
 build/
 .tmp/
