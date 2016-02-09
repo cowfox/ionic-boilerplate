@@ -1,0 +1,20 @@
+/***********************************************************
+ * ### Define all fonts used throughout the app. ###
+
+  Two ways to define the fonts:
+
+  - Use `@import`. e.g. `@import url(http://fonts.googleapis.com/css?family=Roboto:700,400,300);`
+  - Use `@font-face` to load local fonts.
+
+  e.g.
+
+  ```
+  @font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto-Light.ttf) format("truetype");
+    font-weight: 300;
+    font-style: normal;
+  }
+  ```
+
+ ***********************************************************/
