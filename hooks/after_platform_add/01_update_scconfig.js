@@ -15,11 +15,8 @@
 var path            = require('path');
 var fs              = require('fs');
 
-console.log("process.env", process.env);
-
 // Required variables from `process.env`.
 var XCODE_DEVELOPER_NAME = process.env.XCODE_DEVELOPER_NAME;
-var XCODE_PROVISIONING_PROFILE_UUID = process.env.XCODE_PROVISIONING_PROFILE_UUID;
 
 // Including '= " is to exclude other appearances.
 var DEBUG_DEVELOPER_NAME_REGEX = /= (iPhone Developer)/g;
