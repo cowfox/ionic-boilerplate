@@ -162,95 +162,95 @@ The following table lists all **Gulp Tasks** that are currently in **Gulp Flow**
         <th>Annotations</th>
     </tr>
     <tr>
-        <td>`gulp`</td>
+        <td><code>gulp</code></td>
         <td>- Copy `app` folder to `dev` folder<br/>- Process each code component, like app icon, image, fonts, styles, scripts, htmls, etc.&nbsp;<br/>- ""Serve** with local server.<br/>- **Live Reload** enabled.&nbsp;<br/>- The **master** CMD used during the development.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp --build`</td>
+        <td><code>gulp --build</code></td>
         <td>- Build app from `app` folder to `www` folder</td>
     </tr>
     <tr>
-        <td>`gulp --release`</td>
+        <td><code>gulp --release</code></td>
         <td>- Build app from `app` folder to `www` folder<br/>- Perform **minification** to app code.&nbsp;<br/>- Bump **Build #**</td>
     </tr>
     <tr>
-        <td>`gulp --release --env=production`</td>
+        <td><code>gulp --release --env=production</code></td>
         <td>- Build app from `app` folder to `www` folder, under **Production** env.&nbsp;<br/>- Perform **minification** to app code.&nbsp;<br/>- Bump **Build #**</td>
     </tr>
     <tr>
-        <td>`gulp -e ios | android`</td>
+        <td><code>gulp -e ios | android</code></td>
         <td>- Build app from `app` folder to `www` folder<br/>- Run app in **emulator**, iOS or Android.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp -r ios | android`</td>
+        <td><code>gulp -r ios | android</code></td>
         <td>- Build app from `app` folder to `www` folder<br/>- Run app in **device**, iOS or Android.&nbsp;<br/>- When in **iOS**, make sure **xcode build certificate** is set up.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp -h`</td>
+        <td><code>gulp -h</code></td>
         <td>-Check the **extended** Gulp CLI options and examples. &nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp clean`</td>
+        <td><code>gulp clean</code></td>
         <td>- Remove&nbsp;&nbsp;`dev` folder or&nbsp;`www` folder, depending on if adding `--build` or `--release`.<br/>- By default, clean `dev` folder.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp appinfo`</td>
+        <td><code>gulp appinfo</code></td>
         <td>- Sync **app info** from **app manifest file** to &nbsp;other **config files**, like `config.xml`, `package.json`, etc.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp bump --env=production -v=prerelease --preid=beta`</td>
+        <td><code>gulp bump --env=production -v=prerelease --preid=beta</code></td>
         <td>- Bump version in **All** config files -**release version** or **dev version**.<br/>- It depends on the value of `--env`.<br/>- `-v` and `--preid` are only used when bumping **release version**. It follows **semver**.</td>
     </tr>
     <tr>
-        <td class="border-bottom">`gulp bump-dev`</td>
-        <td class="border-bottom">- Bump **dev version**&nbsp;in **All** config files.&nbsp;<br/>- The &nbsp;**dev version** is a combination of&nbsp;**release version** and **current date**, like "0.6.6-20160606".</td>
+        <td><code>gulp bump-dev</code></td>
+        <td>- Bump **dev version**&nbsp;in **All** config files.&nbsp;<br/>- The &nbsp;**dev version** is a combination of&nbsp;**release version** and **current date**, like "0.6.6-20160606".</td>
     </tr>
     <tr>
-        <td>`gulp bump-release -v=prerelease --preid=beta`</td>
+        <td><code>gulp bump-release -v=prerelease --preid=beta</code></td>
         <td>- Bump **release version**.<br/>- The use of &nbsp;`-v` and `--preid` follows **semver**.</td>
     </tr>
     <tr>
-        <td>`gulp bump-build`</td>
+        <td><code>gulp bump-build</code></td>
         <td>- Bump **Build #** in **All** config files.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp versioning`</td>
+        <td><code>gulp versioning</code></td>
         <td>- List all available **gulp tasks** of **versioning**.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp add-ios`,&nbsp;`gulp remove-ios`</td>
+        <td><code>gulp add-ios</code>, <code>gulp remove-ios</code></td>
         <td>- Add / remove **iOS** platform.&nbsp;<br/>- Equivalent to `ionic platform add ios` and `ionic platform remove ios`</td>
     </tr>
     <tr>
-        <td>`gulp add-android`,&nbsp;`gulp remove-android`</td>
+        <td><code>gulp add-android</code>,<code>gulp remove-android</code></td>
         <td>- Add / remove **Android** platform.&nbsp;<br/>- Equivalent to `ionic platform add android` and `ionic platform remove android`</td>
     </tr>
     <tr>
-        <td>`gulp reset`</td>
+        <td><code>gulp reset</code></td>
         <td>- Reset the current platform settings.&nbsp;<br/>- Equivalent to `ionic state reset`</td>
     </tr>
     <tr>
-        <td>`gulp resources`</td>
+        <td><code>gulp resources</code></td>
         <td>- Prepare **app icon** and **splash** if needed.&nbsp;<br/>- Equivalent to `ionic resources`</td>
     </tr>
     <tr>
-        <td>`gulp vendor`</td>
+        <td><code>gulp vendor</code></td>
         <td>- Prepare all **vendor** resources, like styles and scripts.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp lint`</td>
+        <td><code>gulp lint</code></td>
         <td>- Run **lint** on JS scripts.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp tests`</td>
+        <td><code>gulp tests</code></td>
         <td>- Perform **test** on the app.&nbsp;<br/>- It includes both **Unit Test** and **E2E Test**.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp unit`</td>
+        <td><code>gulp unit</code></td>
         <td>- Perform **Unit Test** on the app.&nbsp;</td>
     </tr>
     <tr>
-        <td>`gulp e2e`</td>
+        <td><code>gulp e2e</code></td>
         <td>- Perform **E2E Test** on the app.&nbsp;</td>
     </tr>
 </table>
