@@ -88,18 +88,18 @@
         //
         // If it is in **production**, use **release version**. Otherwise, use **dev release**.
         if (cli.getEnvInfo() === 'production') {
-            if (sourceJsonFile.hasOwnProperty('version')) {
-                config.setVersion(sourceJsonFile.version);
+            if (sourceJsonFile.hasOwnProperty(config.versioning.version)) {
+                config.setVersion(sourceJsonFile[config.versioning.version]);
             }
         } else {
-            if (sourceJsonFile.hasOwnProperty('dev-version')) {
-                config.setVersion(sourceJsonFile['dev-version']);
+            if (sourceJsonFile.hasOwnProperty(config.versioning.dev)) {
+                config.setVersion(sourceJsonFile[config.versioning.de]);
             }
         }
 
-        if (sourceJsonFile.hasOwnProperty('build-version')) {
-            config.setAndroidVersionCode(sourceJsonFile['build-version']);
-            config.setIOSBundleVersion(sourceJsonFile['build-version']);
+        if (sourceJsonFile.hasOwnProperty(config.versioning.build)) {
+            config.setAndroidVersionCode(sourceJsonFile[config.versioning.build]);
+            config.setIOSBundleVersion(sourceJsonFile[config.versioning.build]);
         }
 
         // Write the config file
