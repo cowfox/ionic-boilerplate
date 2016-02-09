@@ -48,8 +48,8 @@
             cli.requiredBuild ? 'noop' : 'set-env',
             cli.requiredBuild ? 'noop' : 'serve',
             cli.requiredBuild ? 'noop' : 'watch',
-            // Bump "Build #"
-            cli.requiredBuild ? 'bump-build' : 'noop',
+            // If in "release" mode, bump "Build #"
+            cli.inReleaseMode ? 'bump-build' : 'noop',
             cli.inEmulateMode ? ['ionic-emulate', 'watch'] : 'noop',
             cli.inRunMode ? 'ionic-run' : 'noop',
             done);

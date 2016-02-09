@@ -51,30 +51,43 @@
     // Gulp Tasks
     //----------------------------------------------------------
 
-    gulp.task('bump', function() {
-        logger.info('bump',
-            "\n Use the following Gulp tasks to bump your app version. ",
-            "\n`gulp bump-build` - Bump the \"Build #\".",
-            "\n`gulp bump-dev` - Bump the \"Dev Version #\".",
-            "\n`gulp bump-release -v=prerelease --preid=beta` - Bump the \"Release Version #\" based on \"semver\" standard.");
-    });
-
     gulp.task('versioning', function() {
         logger.info('bump',
             "\n Use the following Gulp tasks to bump your app version. ",
             "\n`gulp bump-build` - Bump the \"Build #\".",
             "\n`gulp bump-dev` - Bump the \"Dev Version #\".",
-            "\n`gulp bump-release -v=prerelease --preid=beta` - Bump the \"Release Version #\" based on \"semver\" standard.");
+            "\n`gulp bump-release -v=prerelease --preid=beta` - Bump the \"Release Version #\" based on \"semver\" standard.",
+            "\n`gulp bump --env=production -v=prerelease --preid=beta` - Use `gulp bump-dev` or `gulp bump-release -v=prerelease --preid=beta` depending on `env.`. ");
     });
 
+    /**
+     * Decide which **version** to use: **Release Version** or **Dev Version**.
+     */
+    gulp.task('bump', function() {
+        if (cli.getEnvInfo() === 'production') {
+            return bumpReleaseVersion(targetFilePathArray);
+        } else {
+            return bumpDevVersion(targetFilePathArray);
+        }
+    });
+
+    /**
+     * Bump **Release Version**
+     */
     gulp.task('bump-release', function() {
         return bumpReleaseVersion(targetFilePathArray);
     });
 
+    /**
+     * Bump **Build #**
+     */
     gulp.task('bump-build', function() {
         return bumpBuildVersion(targetFilePathArray);
     });
 
+    /**
+     * Bump **Dev Version**
+     */
     gulp.task('bump-dev', function() {
         return bumpDevVersion(targetFilePathArray);
     });

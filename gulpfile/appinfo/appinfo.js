@@ -20,7 +20,7 @@
     var cordovaConfig           = require('cordova-config');
 
     var config                  = require('../config');
-    //var cli                     = require('../cli');
+    var cli                     = require('../cli');
     var logger                  = require('../util/logger');
     //var handleErr               = require('../util/handleErr');
     var pathBuilder             = require('../util/pathBuilder');
@@ -66,7 +66,7 @@
             - Author                `author`            -> <author email="email" href="website">name</author>
             - Version               `version`           -> <widget version="x.y.x"></widget>
             - Android versionCode   `build-version`     -> <widget android-versionCode="#"></widget>
-            - iOS CFBundleVersion   `build-version`           -> <widget ios-CFBundleVersion="x.y.x"></widget>
+            - iOS CFBundleVersion   `build-version`     -> <widget ios-CFBundleVersion="#"></widget>
 
          */
         if (sourceJsonFile.hasOwnProperty('name')) {
@@ -82,9 +82,21 @@
             var author = sourceJsonFile.author;
             config.setAuthor(author.name, author.email, author.url);
         }
-        if (sourceJsonFile.hasOwnProperty('version')) {
-            config.setVersion(sourceJsonFile.version);
+
+        // Assign **version** to either **release version** or **dev release**
+        // based on the current **build environment**.
+        //
+        // If it is in **production**, use **release version**. Otherwise, use **dev release**.
+        if (cli.getEnvInfo() === 'production') {
+            if (sourceJsonFile.hasOwnProperty('version')) {
+                config.setVersion(sourceJsonFile.version);
+            }
+        } else {
+            if (sourceJsonFile.hasOwnProperty('dev-version')) {
+                config.setVersion(sourceJsonFile['dev-version']);
+            }
         }
+
         if (sourceJsonFile.hasOwnProperty('build-version')) {
             config.setAndroidVersionCode(sourceJsonFile['build-version']);
             config.setIOSBundleVersion(sourceJsonFile['build-version']);
