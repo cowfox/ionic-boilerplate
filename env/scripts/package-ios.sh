@@ -6,6 +6,13 @@
 #   - IPA file
 #   - ".dsym.zip" file
 ### ===================
+echo "iOS_BUILD = $iOS_BUILD"
+
+if [ "$BUILD_APP" != true -o  "$iOS_BUILD" != true ]; then
+    echo "Info: Can only run for iOS build. Skip~~~"
+    exit 0
+fi
+
 
 OUTPUTDIR="$PWD/platforms/ios/build/device/"
 

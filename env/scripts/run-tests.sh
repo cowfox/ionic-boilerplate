@@ -13,6 +13,6 @@
 ### -------------------
 if [ "$UNIT_TEST" = true ]; then
 
-    gulp unit
+    gulp unit --env=$BUILD_ENV
 
 fi

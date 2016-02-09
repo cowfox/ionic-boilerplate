@@ -7,6 +7,9 @@
 ### -------------------
 #   Can only run for iOS build.
 ### -------------------
+
+echo "iOS_BUILD = $iOS_BUILD"
+
 if [ "$BUILD_APP" = true -a  "$iOS_BUILD" = true ]; then
 
     gulp add-ios --env=$BUILD_ENV

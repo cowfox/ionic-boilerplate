@@ -8,6 +8,8 @@
 #
 ### ===================
 
+set -e
+
 if [ "$BUILD_APP" = true ]; then
 
     gulp --$BUILD_TARGET --env=$BUILD_ENV

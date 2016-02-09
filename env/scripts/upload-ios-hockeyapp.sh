@@ -10,6 +10,13 @@ if [ -z "$HOCKEY_APP_ID" -a  -z "$HOCKEY_APP_TOKEN" ]; then
     exit 1
 fi
 
+echo "iOS_BUILD = $iOS_BUILD"
+
+if [ "$BUILD_APP" != true -o  "$iOS_BUILD" != true ]; then
+    echo "Info: Can only run for iOS build. Skip~~~"
+    exit 0
+fi
+
 OUTPUTDIR="$PWD/platforms/ios/build/device/"
 
 curl https://rink.hockeyapp.net/api/2/apps/$HOCKEY_APP_ID/app_versions/upload \
