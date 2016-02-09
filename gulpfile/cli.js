@@ -117,15 +117,20 @@
     var emulatorDevice = args.target;
 
     // Env.
-    logger.info('ENV', "Current Env.:", args.environment);
     var env = args.environment;
 
-    gutil.log("requiredBuild", args.build, inEmulateMode, requiredBuild);
+    //
     var baseTargetFolderPath = path.resolve(requiredBuild ? config.getBuildPath() : config.getDevPath());
 
     // Versioning
     var bumpVersionType = args.v;
     var bumpVersionPreID = args.preid;
+
+    // Print the **current** env. settings
+    logger.info('ENV. Settings',
+        "\n- Current Build Environment:", args.environment,
+        "\n- Required \"Build\"?:", requiredBuild,
+        "\n- In \"Release\" Mode?:", inReleaseMode);
 
     var exports = {
 

@@ -33,6 +33,7 @@
             manifest: "./manifest.json", // under `app` folder.
             syncTargets: [
                 // Relative to 'App Root'.
+                // By default, `config.xml` is included.
                 "./package.json",
                 "./bower.json",
                 "./ionic.project"
@@ -101,8 +102,9 @@
                 './splash.+(png|psd|ai)'
             ],
             // Relative to 'Project Root'.
-            // The target folder is normally used by `ionic resources`.
-            // So, just keep it as default.
+            // The target folder that the **app icon** is copied to.
+            // Then the app icon is used by `ionic resources`.
+            // Note: Just keep it as default.
             appiconTargetFolderPath: './resources'
         },
 
@@ -186,6 +188,10 @@
             templatesFolderPath: "./templates",
             // ----
             // Angular Templates Cache
+            //
+            // Once generated, it will be copied back to the `scripts` folder under `app` folder.
+            // for further **Script Process**
+            //
             // {#link https://docs.angularjs.org/api/ng/service/$templateCache}
             // ----
             templatesCacheUsed: true,
@@ -308,7 +314,7 @@
         // Express Server
         //----------------------------------------------------------
         serve: {
-            port: "8800",
+            port: "8800"
         },
 
 

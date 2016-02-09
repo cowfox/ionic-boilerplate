@@ -11,7 +11,6 @@
     Here, the list should be **identical** to the **lib list** under `vendorScriptFileBrowserifyRequireBundle`
     in `Gulp config file`.
 
-    The list of libraries are loaded from your local **NPM** folder.
     For those `browserify-shim` libraries, be sure to use the name defined in `browser` section.
  */
 var angular = require("angular");
