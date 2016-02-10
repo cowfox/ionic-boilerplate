@@ -21,7 +21,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "ssh://git@stash.wuneo.co/starter/ionic-boilerplate.git"
+        "url": "https://github.com/cowfox/ionic-boilerplate"
     },
     "author": {
         "name": "Lei SHI",
