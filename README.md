@@ -4,7 +4,8 @@ A boilerplate project for Ionic framework development.
 
 ## Features
 
-- The **Modularize** AngularJS code structure enables you to **freely** define your app functionality and add **modules** if needed. The registration of **Angular Elements** (controller, service, etc.) are all done automatically. Check [this post](http://www.5neo.be/the-journey-to-ionic-boilerplate-modularize-angularjs-code/) for more details.  \
+- The **Modularize** AngularJS code structure enables you to **freely** define your app functionality and add **modules** if needed. The registration of **Angular Elements** (controller, service, etc.) are all done automatically. Check [this post](http://www.5neo.be/the-journey-to-ionic-boilerplate-modularize-angularjs-code/) for more details. 
+- The **full stack** of app code processing, including icon font generation, styles autoprefixer and minifyCss, scripts uglify and lint, html injection, etc. 
 - A **folder-based** Gulp tasks management system facilitates the Gulp task building and management. 
 - **Gulp Flow** - the **Gulp based streamline application development process** to help boost the whole development practice, covering the following points: 
 	- Simplify Terminal interface (CLI) to avoid the use of both`gulp` and `ionic`. 
