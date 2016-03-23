@@ -121,7 +121,9 @@
     "angular": "1.4.9",
     "angular-sanitize": "1.4.9",
     "angular-animate": "1.4.9",
-    "angular-ui-router": "0.2.15"
+    "angular-ui-router": "0.2.15",
+    "map-stream": "0.0.6",
+    "through": "2.3.8"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
