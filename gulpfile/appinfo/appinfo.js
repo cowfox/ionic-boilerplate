@@ -54,7 +54,7 @@
     //----------------------------------------------------------
 
     function upadteAppinfoToCordovaConfig(sourceFilePath, cordovaConfigFilePath) {
-        var config = new cordovaConfig(cordovaConfigFilePath);
+        var targetConfig = new cordovaConfig(cordovaConfigFilePath);
         var sourceJsonFile = fileOp.readyJSONFile(sourceFilePath);
 
         /*
@@ -70,40 +70,46 @@
 
          */
         if (sourceJsonFile.hasOwnProperty('name')) {
-            config.setName(sourceJsonFile.name);
+            targetConfig.setName(sourceJsonFile.name);
         }
         if (sourceJsonFile.hasOwnProperty('id')) {
-            config.setID(sourceJsonFile.id);
+            targetConfig.setID(sourceJsonFile.id);
         }
         if (sourceJsonFile.hasOwnProperty('description')) {
-            config.setDescription(sourceJsonFile.description);
+            targetConfig.setDescription(sourceJsonFile.description);
         }
         if (sourceJsonFile.hasOwnProperty('author')) {
             var author = sourceJsonFile.author;
-            config.setAuthor(author.name, author.email, author.url);
+            targetConfig.setAuthor(author.name, author.email, author.url);
         }
 
         // Assign **version** to either **release version** or **dev release**
         // based on the current **build environment**.
         //
         // If it is in **production**, use **release version**. Otherwise, use **dev release**.
-        if (cli.getEnvInfo() === 'production') {
-            if (sourceJsonFile.hasOwnProperty(config.versioning.version)) {
-                config.setVersion(sourceJsonFile[config.versioning.version]);
-            }
-        } else {
-            if (sourceJsonFile.hasOwnProperty(config.versioning.dev)) {
-                config.setVersion(sourceJsonFile[config.versioning.de]);
-            }
+        // TODO Temp disable it due to the `cordova-config` plugin
+        // Currently, `cordova-config` does not support *pre-release** format, only for **x.y.x**.
+        //if (cli.getEnvInfo() === 'production') {
+        //    if (sourceJsonFile.hasOwnProperty(config.versioning.version)) {
+        //        targetConfig.setVersion(sourceJsonFile[config.versioning.version]);
+        //    }
+        //} else {
+        //    console.log("config.versioning.dev",config.versioning);
+        //    if (sourceJsonFile.hasOwnProperty(config.versioning.dev)) {
+        //        targetConfig.setVersion(sourceJsonFile[config.versioning.dev]);
+        //    }
+        //}
+        if (sourceJsonFile.hasOwnProperty(config.versioning.version)) {
+            targetConfig.setVersion(sourceJsonFile[config.versioning.version]);
         }
 
         if (sourceJsonFile.hasOwnProperty(config.versioning.build)) {
-            config.setAndroidVersionCode(sourceJsonFile[config.versioning.build]);
-            config.setIOSBundleVersion(sourceJsonFile[config.versioning.build]);
+            targetConfig.setAndroidVersionCode(sourceJsonFile[config.versioning.build]);
+            targetConfig.setIOSBundleVersion(sourceJsonFile[config.versioning.build]);
         }
 
         // Write the config file
-        config.writeSync();
+        targetConfig.writeSync();
     }
 
 }());

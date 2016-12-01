@@ -129,8 +129,8 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    "ios",
+    "android"
   ],
   "scripts": {
     "gulp": "./node_modules/.bin/gulp",
