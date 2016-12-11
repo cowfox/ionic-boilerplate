@@ -13,6 +13,7 @@
     var angular                 = require("angular");
     require("angular-mock");
 
+    // Locate your own "Angular Module Declarator" file.
     var moduleDeclarator        = require('../app/scripts/module.declarator');
 
     //----------------------------------------------------------
@@ -39,7 +40,8 @@
               "service": sandbox.spy(),
               "factory": sandbox.spy(),
               "directive": sandbox.spy(),
-              "filter": sandbox.spy()
+              "filter": sandbox.spy(),
+              "constant": sandbox.spy()
             };
         });
 
@@ -50,7 +52,7 @@
 
         ////
 
-        describe("#angularModuleDeclarator Function Arguments", function() {
+        describe("Function Arguments", function() {
 
             it("should not accept module as NULL.", function() {
                 //TODO Current `chai` has issue in `.throw()`.
@@ -68,158 +70,173 @@
                 var eleMap = 'Not an object';
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
 
-                sinon.assert.calledOnce(console.error);
-                sinon.assert.calledWithExactly(console.error, 'The elementMap must be an object!!');
+                //
+                expect(console.error.callCount).to.be.equal(1);
+
+                // sinon.assert.calledOnce(console.error);
+                // sinon.assert.calledWithExactly(console.error, 'The elementMap must be an object!!');
             });
 
             it("should not accept elementMap as an empty object.", function() {
                 var eleMap = {};
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
 
-                sinon.assert.calledOnce(console.error);
-                sinon.assert.calledWithExactly(console.error, 'The elementMap object cannot be empty!!');
+                expect(console.error.callCount).to.be.equal(1);
+
+                // sinon.assert.calledOnce(console.error);
+                // sinon.assert.calledWithExactly(console.error, 'The elementMap object cannot be empty!!');
             });
         });
 
-        describe("#angularModuleDeclarator Function", function() {
+        describe("Function", function() {
 
-            it("should return error if elementMap contains 'non-object' element. ", function() {
+            it('should ignore the "invalid" registration item', function() {
+
                 var eleMap = {
-                    "string": "Not an object"
+                    'lackRequiredElements': {
+                        name: "aController"
+                    },
+                    'nameIsEmpty': {
+                        name: '',
+                        type: 'controller',
+                        func: function() {}
+                    },
+                    'typeIsNotSupported': {
+                        name: 'aController',
+                        type: 'controllerTypo',
+                        func: function() {}
+                    },
+                    'funcIsNotFunction': {
+                        name: 'aController',
+                        type: 'controller',
+                        func: 'Not a function'
+                    },
+                    'funcIsNotObject': {
+                        name: 'aController',
+                        type: 'controller',
+                        func: [1, 2]
+                    }
                 };
+
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
-                sinon.assert.calledOnce(console.error);
-                sinon.assert.calledWithExactly(console.error, 'The element in elementMap must be an object!!');
+
+                expect(module.controller.callCount).to.be.equal(0);
+                expect(module.factory.callCount).to.be.equal(0);
+                expect(module.service.callCount).to.be.equal(0);
+                expect(module.directive.callCount).to.be.equal(0);
+                expect(module.filter.callCount).to.be.equal(0);
+                expect(module.constant.callCount).to.be.equal(0);
             });
 
             it("should be able to register a 'controller'.", function() {
                 var eleMap = {
-                    "controller": {
+                    'controller': {
                         name: 'aController',
-                        type: "controller",
+                        type: 'controller',
                         func: function() {}
                     }
                 };
 
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
+
                 expect(module.controller.called).to.be.true;
             });
 
             it("should be able to register a 'factory'.", function() {
                 var eleMap = {
-                    "factory": {
+                    'factory': {
                         name: 'aFactory',
-                        type: "factory",
+                        type: 'factory',
+                        func: function() {}
+                    },
+                    'anotherFactory': {
+                        name: 'anotherFactory',
+                        type: 'factory',
                         func: function() {}
                     }
                 };
-                //
+
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
+
                 expect(module.factory.called).to.be.true;
             });
 
             it("should be able to register a 'service'.", function() {
                 var eleMap = {
-                    "service": {
+                    'service': {
                         name: 'aService',
-                        type: "service",
+                        type: 'service',
                         func: function() {}
                     }
                 };
 
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
+
                 expect(module.service.called).to.be.true;
             });
 
             it("should be able to register a 'directive'.", function() {
                 var eleMap = {
-                    "directive": {
+                    'directive': {
                         name: 'aDirective',
-                        type: "directive",
+                        type: 'directive',
                         func: function() {}
                     }
                 };
 
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
+
                 expect(module.directive.called).to.be.true;
             });
 
             it("should be able to register a 'filter'.", function() {
                 var eleMap = {
-                    "filter": {
+                    'filter': {
                         name: 'aFilter',
-                        type: "filter",
+                        type: 'filter',
                         func: function() {}
                     }
                 };
 
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
+
                 expect(module.filter.called).to.be.true;
             });
 
-            it("should be able to ignore 'non-object elements'.", function() {
-
+            it("should be able to register a 'constant'.", function() {
                 var eleMap = {
-                    "controller": {
-                        name: 'aController',
-                        type: "controller",
-                        func: function() {}
-                    },
-                    "factory": {
-                        name: 'aFactory',
-                        type: "factory",
-                        func: function() {}
-                    },
-                    // error
-                    "number": 1,
-                    "service": {
-                        name: 'aService',
-                        type: "service",
-                        func: function() {}
-                    },
-                    "directive": {
-                        name: 'aDirective',
-                        type: "directive",
-                        func: function() {}
-                    },
-                    // error
-                    "string": "Not an object",
-                    "filter": {
-                        name: 'aFilter',
-                        type: "filter",
-                        func: function() {}
-                    },
-                    // error
-                    "fakeFilter": {
-                        name: 'aFilter',
-                        type: "filter-typo",
-                        func: function() {}
-                    },
-                    // error
-                    "fakeFactory": {
-                        name: 2,
-                        type: "filter",
-                        func: function() {}
-                    },
-                    // error
-                    "fakeController": {
-                        name: 'anotherController',
-                        type: "controller",
-                        func: 'Not a function'
+                    'constant': {
+                        name: 'aConstant',
+                        type: 'constant',
+                        func: {
+                            constantName: 'constant'
+                        }
                     }
                 };
 
                 moduleDeclarator.angularModuleDeclarator(module, eleMap);
 
-                expect(console.error.callCount).to.be.equal(5);
-
-                expect(module.controller.callCount).to.be.equal(1);
-                expect(module.factory.callCount).to.be.equal(1);
-                expect(module.service.callCount).to.be.equal(1);
-                expect(module.directive.callCount).to.be.equal(1);
-                expect(module.filter.callCount).to.be.equal(1);
+                expect(module.constant.called).to.be.true;
             });
+
+            it('should register an item even it is in several levels deep', function() {
+                var eleMap = {
+                    'midEle': {
+                        'controller': {
+                            name: 'aController',
+                            type: 'controller',
+                            func: function() {}
+                        }
+                    }
+                };
+
+                moduleDeclarator.angularModuleDeclarator(module, eleMap);
+
+                expect(module.controller.called).to.be.true;
+            });
+
         });
+
     });
 
 }());
