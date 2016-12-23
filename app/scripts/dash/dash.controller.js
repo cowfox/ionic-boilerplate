@@ -9,6 +9,10 @@ function dashController($scope) {
 
     'ngInject';
 
+    var vm = this;
+
+    vm.matchReplacementExample = '@@Sample_Replacement';
+
 }
 
 module.exports = {
