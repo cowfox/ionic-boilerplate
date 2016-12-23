@@ -1,10 +1,11 @@
 {
     "name": "ionic-boilerplate",
+    "appName": "Ionic Boilerplate",
     "id": "com.wuneo.boilerplate.ionic",
-    "version": "0.7.0",
-    "build-version": "672",
-    "dev-version": "0.6.6-20160203",
-    "description": "A project boilerplate for starting development with Ionic framework.",
+    "version": "0.8.0",
+    "build-version": "888",
+    "dev-version": "0.6.6-20161223",
+    "description": "A project boilerplate for starting development with Ionic v1 framework.",
     "keywords": [
         "ionic",
         "boilerplate",
