@@ -42,8 +42,8 @@
   "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
   "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
   "eqnull"        : false,     // true: Tolerate use of `== null`
-  "es5"           : false,      // true: Allow ES5 syntax (ex: getters and setters)
-  "esnext"        : false,     // true: Allow ES.next (ES6) syntax (ex: `const`)
+//  "es5"           : false,      // true: Allow ES5 syntax (ex: getters and setters)
+//  "esnext"        : false,     // true: Allow ES.next (ES6) syntax (ex: `const`)
   "moz"           : false,     // true: Allow Mozilla specific syntax (extends and overrides esnext features)
   // (ex: `for each`, multiple try/catch, function expression…)
   "evil"          : false,     // true: Tolerate use of `eval` and `new Function()`
@@ -71,11 +71,11 @@
   "couch"         : false,    // CouchDB
   "devel"         : true,     // Development/debugging (alert, confirm, etc)
   "dojo"          : false,    // Dojo Toolkit
-  "jasmine"       : true,    // Jasmine
+  "jasmine"       : false,    // Jasmine
   "jquery"        : false,    // jQuery
   "mocha"         : true,     // Mocha
   "mootools"      : false,    // MooTools
-  "node"          : false,    // Node.js
+  "node"          : true,    // Node.js
   "nonstandard"   : false,    // Widely adopted globals (escape, unescape, etc)
   "phantom"       : true,    // PhantomJS
   "prototypejs"   : false,    // Prototype and Scriptaculous
@@ -89,6 +89,8 @@
 
   // Custom Globals
   "globals"       : {         // additional predefined global variables
-
+    // Cordova and related plugins
+    "cordova" : true,
+    "StatusBar" : true
   }
 }

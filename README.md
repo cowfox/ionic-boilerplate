@@ -19,7 +19,7 @@ Here is a general procedure of typical usage.
 
 ### App Init Setup
 
-- Ensure **NodeJS** and **NPM** are set up and the following packages have been installed as `global` -  `napa`, `gulp`, `corfova`, `ionic` and `bower`. 
+- Ensure **NodeJS** and **NPM** are set up and the following packages have been installed as `global` -  `napa`, `gulp`, `cordova`, `ionic` and `bower`. 
 - `git clone` this project to your local machine and then change `origin` to your Git repo. 
 - Inside **project folder**, update your **app info** in the file `./app/manifest.json`, such as app name, description, id, version, author info, etc. 
 - In Terminal, run `npm install` and `bower install` to upload local dependencies. 

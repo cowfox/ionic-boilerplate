@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="674" id="com.wuneo.boilerplate.ionic" ios-CFBundleVersion="674" version="0.7.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ionic-boilerplate</name>
-    <description>A project boilerplate for starting development with Ionic framework.</description>
+<widget android-versionCode="888" id="com.wuneo.boilerplate.ionic.Dev" ios-CFBundleVersion="888" version="0.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Ionic Boilerplate Dev</name>
+    <description>A project boilerplate for starting development with Ionic v1 framework.</description>
     <author email="foxshee@gmail.com" href="http://5neo.be">Lei SHI</author>
     <content src="index.html" />
     <access origin="*" />

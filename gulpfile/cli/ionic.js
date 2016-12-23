@@ -16,7 +16,7 @@
 
     //var config                  = require('../config');
     var cli                     = require('../cli');
-    //var logger                  = require('../util/logger');
+    var logger                  = require('../util/logger');
     //var handleErr               = require('../util/handleErr');
     //var pathBuilder             = require('../util/pathBuilder');
     //var fileOP                  = require('../util/fileOP');
@@ -44,13 +44,16 @@
     ]));
 
     // ionic state reset
+    // Reload all "Cordova" plugins.
+    // NOTE: This process does not run the "corfova hooks".
+    // If you do have the hooks, better run "remove" then "add".
     gulp.task('reset', shell.task([
         'ionic state reset'
     ]));
 
     // ionic emulate [platform] -l -c
     gulp.task('ionic-emulate', shell.task([
-        'ionic emulate ' + cli.emulatePlatform + ' --livereload --consolelogs'
+        'ionic emulate ' + cli.emulatePlatform + ' --target="' + cli.emulatorDevice + '" --livereload --consolelogs'
     ]));
 
     // ionic emulate [platform]

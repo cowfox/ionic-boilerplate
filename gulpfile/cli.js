@@ -65,7 +65,6 @@
             'env' :{
                 alias: 'environment',
                 demand: false,
-                default: 'development',
                 describe: 'Specify the "build environment", such as "development", "staging", "staging", "production", etc. ',
                 type: 'string'
             },
@@ -114,10 +113,10 @@
     var requiredBuild = !!(args.build || inEmulateMode || inRunMode || inReleaseMode);
 
     // iOS emulator devices
-    var emulatorDevice = args.target;
+    var emulatorDevice = args.target || config.env['defaultIOSEmulateDevice'];
 
     // Env.
-    var env = args.environment;
+    var env = args.environment || config.env.defaultEnv;
 
     //
     var baseTargetFolderPath = path.resolve(requiredBuild ? config.getBuildPath() : config.getDevPath());
@@ -128,7 +127,7 @@
 
     // Print the **current** env. settings
     logger.info('ENV. Settings',
-        "\n- Current Build Environment:", args.environment,
+        "\n- Current Build Environment:", getEnvDescription(),
         "\n- Required \"Build\"?:", requiredBuild,
         "\n- In \"Release\" Mode?:", inReleaseMode);
 
@@ -148,7 +147,9 @@
 
         // Func
         solveTargetFolderPath: solveTargetFolderPath,
-        getEnvInfo: getEnvInfo
+        getEnvInfo: getEnvInfo,
+        getEnvDescription: getEnvDescription,
+        isInProduction: isInProduction
     };
 
     module.exports = exports;
@@ -177,7 +178,26 @@
      * @returns {String} The current Env.
      */
     function getEnvInfo() {
-        return config.env.envType[env];
+        return env;
+    }
+
+    /**
+     * Get the current env. info.
+     *
+     * @returns {String} The current Env.
+     */
+    function getEnvDescription() {
+        return config.env.envTypeDescription[env];
+    }
+
+
+    /**
+     * Check if it is currently in "production" mode.
+     *
+     * @return {boolean}
+     */
+    function isInProduction() {
+        return env === 'production';
     }
 
 }());
