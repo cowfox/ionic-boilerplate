@@ -33,17 +33,18 @@
     gulp.task(taskName, function() {
 
         // Set **global** env variables, including `NODE_ENV`
-        var nodeEnv = cli.getEnvInfo();
-        var globalEnvVariable = config.env.global;
-        globalEnvVariable.NODE_ENV = nodeEnv;
+        var nodeJsEnv = cli.getEnvInfo();
 
-        var specificEnvVariables = config.env[nodeEnv];
+        var globalEnvVariable = config.env.global;
+        globalEnvVariable.NODE_ENV = nodeJsEnv;
+
+        var specificEnvVariables = config.env[nodeJsEnv];
 
         _updateProcessEnv(globalEnvVariable);
         _updateProcessEnv(specificEnvVariables);
 
         logger.info(taskName,
-            "Set 'Environment Variables' for:", nodeEnv);
+            "Set 'Environment Variables' for:", nodeJsEnv);
     });
 
     //----------------------------------------------------------
@@ -55,7 +56,7 @@
         if (typeof envVariableObj !== 'object') {
             logger.error(taskName,
             "Environment Variables in Gulp 'config.js' file is not an object. ",
-            "\n Please double check!")
+            "\n Please double check!");
             return;
         }
         // Set process.env.

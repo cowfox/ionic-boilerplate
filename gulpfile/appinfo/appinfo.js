@@ -17,7 +17,7 @@
     //var fs                      = require('fs');
     //var path                    = require('path');
 
-    var cordovaConfig           = require('cordova-config');
+    var cordovaConfigWorker           = require('cordova-config');
 
     var config                  = require('../config');
     var cli                     = require('../cli');
@@ -54,7 +54,7 @@
     //----------------------------------------------------------
 
     function upadteAppinfoToCordovaConfig(sourceFilePath, cordovaConfigFilePath) {
-        var targetConfig = new cordovaConfig(cordovaConfigFilePath);
+        var cordovaConfig = new cordovaConfigWorker(cordovaConfigFilePath);
         var sourceJsonFile = fileOp.readyJSONFile(sourceFilePath);
 
         /*
@@ -68,19 +68,33 @@
             - Android versionCode   `build-version`     -> <widget android-versionCode="#"></widget>
             - iOS CFBundleVersion   `build-version`     -> <widget ios-CFBundleVersion="#"></widget>
 
+            Depending on the current env, it can also add a "suffix" to both "app name" and "app id".
+            For example, the app name "App" will be become "App Dev".
          */
-        if (sourceJsonFile.hasOwnProperty('name')) {
-            targetConfig.setName(sourceJsonFile.name);
+
+        var isInProduction = cli.isInProduction();
+        var envCode = cli.getEnvDescription();
+
+        if (sourceJsonFile.hasOwnProperty('appName')) {
+            var appName = sourceJsonFile.appName;
+            if(!isInProduction) {
+                appName = appName + ' ' + envCode;
+            }
+            cordovaConfig.setName(appName);
         }
         if (sourceJsonFile.hasOwnProperty('id')) {
-            targetConfig.setID(sourceJsonFile.id);
+            var appID = sourceJsonFile.id;
+            if(!isInProduction) {
+                appID = appID + '.' + envCode;
+            }
+            cordovaConfig.setID(appID);
         }
         if (sourceJsonFile.hasOwnProperty('description')) {
-            targetConfig.setDescription(sourceJsonFile.description);
+            cordovaConfig.setDescription(sourceJsonFile.description);
         }
         if (sourceJsonFile.hasOwnProperty('author')) {
             var author = sourceJsonFile.author;
-            targetConfig.setAuthor(author.name, author.email, author.url);
+            cordovaConfig.setAuthor(author.name, author.email, author.url);
         }
 
         // Assign **version** to either **release version** or **dev release**
@@ -91,25 +105,26 @@
         // Currently, `cordova-config` does not support *pre-release** format, only for **x.y.x**.
         //if (cli.getEnvInfo() === 'production') {
         //    if (sourceJsonFile.hasOwnProperty(config.versioning.version)) {
-        //        targetConfig.setVersion(sourceJsonFile[config.versioning.version]);
+        //        cordovaConfig.setVersion(sourceJsonFile[config.versioning.version]);
         //    }
         //} else {
         //    console.log("config.versioning.dev",config.versioning);
         //    if (sourceJsonFile.hasOwnProperty(config.versioning.dev)) {
-        //        targetConfig.setVersion(sourceJsonFile[config.versioning.dev]);
+        //        cordovaConfig.setVersion(sourceJsonFile[config.versioning.dev]);
         //    }
         //}
-        if (sourceJsonFile.hasOwnProperty(config.versioning.version)) {
-            targetConfig.setVersion(sourceJsonFile[config.versioning.version]);
+
+        if (sourceJsonFile.hasOwnProperty(config.versioning.releaseVersion)) {
+            cordovaConfig.setVersion(sourceJsonFile[config.versioning.releaseVersion]);
         }
 
-        if (sourceJsonFile.hasOwnProperty(config.versioning.build)) {
-            targetConfig.setAndroidVersionCode(sourceJsonFile[config.versioning.build]);
-            targetConfig.setIOSBundleVersion(sourceJsonFile[config.versioning.build]);
+        if (sourceJsonFile.hasOwnProperty(config.versioning.buildNumber)) {
+            cordovaConfig.setAndroidVersionCode(sourceJsonFile[config.versioning.buildNumber]);
+            cordovaConfig.setIOSBundleVersion(sourceJsonFile[config.versioning.buildNumber]);
         }
 
         // Write the config file
-        targetConfig.writeSync();
+        cordovaConfig.writeSync();
     }
 
 }());

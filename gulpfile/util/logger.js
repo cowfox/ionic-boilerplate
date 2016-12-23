@@ -9,7 +9,7 @@
 
     var gutil                   = require('gulp-util');
 
-    var msgPrefix = '----| Gulp Flow |==[-';
+    var msgPrefix = '\n----| Gulp Flow |==[-';
 
     var exports = {
         info: info,

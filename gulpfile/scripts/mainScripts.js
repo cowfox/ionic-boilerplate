@@ -23,6 +23,7 @@
     var gulp                = require('gulp');
     //var gutil               = require('gulp-util');
     var gulpif              = require('gulp-if');
+    var path                = require('path');
 
     var browserify          = require('browserify');
     var ngAnnotate          = require('browserify-ngannotate');
@@ -34,6 +35,7 @@
     var sourcemaps          = require('gulp-sourcemaps');
     var source              = require('vinyl-source-stream');
     var buffer              = require('vinyl-buffer');
+    var replace             = require('gulp-replace-task');
 
     //var glob                = require('glob-all');
     //var rename              = require("gulp-rename");
@@ -43,6 +45,7 @@
     var logger              = require('../util/logger');
     var handleErr           = require('../util/handleErr');
     var pathBuilder         = require('../util/pathBuilder');
+    var fileOp              = require('../util/fileOp');
 
     var taskName = "main-scripts";
 
@@ -109,8 +112,19 @@
          */
         b.external(requiredVendorBundles);
 
+        /*
+         Get ready for doing "match-replacement" for env change.
+         */
+        var nodeJsEnv = cli.getEnvInfo();
+        var replacementFilename = nodeJsEnv + '.json';
+        var replacementFilePath = path.join(
+            config.getAppPath(config.envReplacement.baseFolder),
+            replacementFilename);
+        var replacementJson = fileOp.readyJSONFile(replacementFilePath);
+
         return b.bundle()
             .pipe(source(newOutputScriptFilename))
+            .pipe(streamify(replace(replacementJson)))
             .pipe(gulpif(cli.inReleaseMode, buffer()))
             .pipe(gulpif(cli.inReleaseMode, sourcemaps.init({ loadMaps: true })))
             .pipe(gulpif(cli.inReleaseMode, streamify(uglify({

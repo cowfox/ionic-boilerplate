@@ -13,9 +13,9 @@
 
     var config = {
 
-        //----------------------------------------------------------
-        // Project Info
-        //----------------------------------------------------------
+        // region -> Project Info <-
+        // ----------
+
         // Root dir.
         root: {
             base: path.join(__dirname,  '../'),  // Project Root
@@ -40,15 +40,24 @@
             ]
         },
 
+        // ----
+        // Environment Settings
+        //
+        // It utilizes `gulp-preprocess` to set up these env settings to the overall "ENV",
+        // including ``NODE_ENV`
+        // ----
         env: {
-            // Use `gulp-preprocess` to help process the ENV configurations.
-            // It depends on the env. variable `NODE_ENV" from NodeJS.
-            envType: {
-                development: 'development',
-                test: 'test',
-                staging: 'staging',
-                production: 'production'
+            // When adding "env type" to "ENV", only the "keys" will be used.
+            // For description, it is for "displaying" based on your own preference.
+            envTypeDescription: {
+                development: 'Dev',
+                test: 'Test',
+                staging: 'Staging',
+                production: 'Prod'
             },
+
+            // Default "env" type - from the above "keys", not the "values".
+            defaultEnv: 'development',
 
             // ----
             // Environment global variables
@@ -57,32 +66,66 @@
             },
 
             // ----
+            // Default iOS simulate device target.
+            //
+            // Run `gulp -e ios --target \"iPad-Air-2, 10.0\"` or you can specify the `target` here.
+            // ----
+            "defaultIOSEmulateDevice": 'iPad-Air-2, 10.0',
+
+            // ----
             // Environment specific variables
             // ----
-            "development": {
+            development: {
                 // The **name** of the **Code Signing Identity**.
                 XCODE_DEVELOPER_NAME: "iPhone Developer: Lei Shi (3Y46G6EDBE)",
                 // The filename (excluding file extension `.mobileprovision`) of provisioning profile.
                 XCODE_PROVISIONING_PROFILE_FILENAME: "xcode-profile-debug"
             },
-            "production": {
+            staging: {
                 // The **name** of the **Code Signing Identity**.
-                XCODE_DEVELOPER_NAME: "iPhone Distribution: Lei Shi (3Y46G6EDBE)",
+                XCODE_DEVELOPER_NAME: "iPhone Distribution",
+                // The filename (excluding file extension `.mobileprovision`) of provisioning profile.
+                XCODE_PROVISIONING_PROFILE_FILENAME: "xcode-profile-release"
+            },
+            production: {
+                // The **name** of the **Code Signing Identity**.
+                XCODE_DEVELOPER_NAME: "iPhone Distribution",
                 // The filename (excluding file extension `.mobileprovision`) of provisioning profile.
                 XCODE_PROVISIONING_PROFILE_FILENAME: "xcode-profile-release"
             }
         },
 
+        // The "property names" in "manifest.json" on different env.
+        // This property will also be written to the target "json" files.
         versioning: {
-            version: "version",
-            build: "build-version",
-            dev: "dev-version"
+            releaseVersion: "version",
+            buildNumber: "build-version",
+            devVersion: "dev-version"
         },
 
+        // ----
+        // Environment Replacement - based on "gulp-replace-task"
+        //
+        // The filename of "replacement file" is based on the value of "envTypeDescription".
+        //  For example, if "development" env named "development", the file will be: "development.json"
+        // ----
+        envReplacement: {
+            // Relative to 'App Root'.
+            baseFolder: './env',
 
-        //----------------------------------------------------------
-        // Assets - App Icons & Images
-        //----------------------------------------------------------
+            // Relative to 'App Root'.
+            targetFiles: [
+                'scripts/dash/dash.controller.js'
+            ]
+        },
+
+        // ----------
+        // endregion
+
+
+        // region -> App Icons & Images <-
+        // ----------
+
         assets: {
             // Relative to 'App Root'.
             imageFolderPath: './images',
@@ -108,10 +151,16 @@
             appiconTargetFolderPath: './resources'
         },
 
+        // ----------
+        // endregion
 
-        //----------------------------------------------------------
-        // Assets - Fonts
-        //----------------------------------------------------------
+
+        /////////////////////////////
+
+
+        // region -> Assets - Fonts <-
+        // ----------
+
         fonts: {
             // Relative to 'App Root'.
             fontFolderPath: "./fonts",
@@ -151,13 +200,19 @@
             // The "relative" path to "root path" of the **vendor folder**.
             vendorFontFilePaths: [
                 // Relative to 'Vendor Root'.
-                'ionic/fonts/**/*.+(eot|ttf|woff)'
+                'ionic/release/fonts/**/*.+(eot|ttf|woff)'
             ]
         },
 
-        //----------------------------------------------------------
-        // HTMLs
-        //----------------------------------------------------------
+        // ----------
+        // endregion
+
+
+        /////////////////////////////
+
+
+        // region -> HTMLs <-
+        // ----------
 
         htmls: {
             indexFile: "index.html",
@@ -203,9 +258,16 @@
             }
         },
 
-        //----------------------------------------------------------
-        // Styles
-        //----------------------------------------------------------
+        // ----------
+        // endregion
+
+
+        /////////////////////////////
+
+
+        // region -> Styles <-
+        // ----------
+
         styles: {
             // Relative to 'App Root'.
             styleFolderPath: "./styles",
@@ -241,16 +303,25 @@
             // Vendor CSS
             // ----
             vendorCssFile: "vendor.css", // The filename of "output" CSS file generated from all the vendors' CSS files.
+            // Add the "vendor CSS" to the list.
             vendorCssFilePaths: [
                 // Relative to 'Vendor Root'.
-                'ionic/css/ionic.css'
+                // Normally it will be your "bower components" folder.
+                'ionic/release/css/ionic.css'
             ]
         },
 
+        // ----------
+        // endregion
 
-        //----------------------------------------------------------
-        // Scripts
-        //----------------------------------------------------------
+
+        /////////////////////////////
+
+
+        // region -> Scripts <-
+        // ----------
+
+
         scripts: {
             // Relative to 'App Root'.
             scriptFolderPath: "./scripts",
@@ -268,6 +339,7 @@
             // Vendor Scripts
             // ----
             vendorScriptFile: "vendor.js", // The filename of "output" JS file generated from all the vendors' JS files.
+
             //
             // The list of bundles that are loaded as "External" from the **app bundle**.
             //
@@ -283,6 +355,7 @@
                 // `browserify-shim` libraries
                 'ionic-js',
                 'ionic-angular',
+                'angular-q-spread',
                 'ng-cordova'
             ],
 
@@ -293,6 +366,7 @@
             lintFilePaths: [
                 // // Relative to 'scriptFolderPath'.
                 './**/*.js',
+                '!./**/_vendor/**/*.js', // exclude "manual" vendors you added.
                 '!./**/*.cache.js', // exclude "templates cache" file
                 '!./**/*.+(unit|spec).js' // exclude "templates cache" file
             ],
@@ -309,18 +383,30 @@
 
         },
 
+        // ----------
+        // endregion
 
-        //----------------------------------------------------------
-        // Express Server
-        //----------------------------------------------------------
+
+        /////////////////////////////
+
+
+        // region -> Express Server <-
+        // ----------
+
         serve: {
             port: "8800"
         },
 
+        // ----------
+        // endregion
 
-        //----------------------------------------------------------
-        // Testing
-        //----------------------------------------------------------
+
+        /////////////////////////////
+
+
+        // region -> Testing <-
+        // ----------
+
         tests: {
             karmaConfigFilePath: './tests/karma.conf.js',
             protractorConfigFilePath: './tests/protractor.conf.js',
@@ -329,9 +415,15 @@
             ]
         },
 
-        //----------------------------------------------------------
-        // Helper Functions
-        //----------------------------------------------------------
+        // ----------
+        // endregion
+
+
+        /////////////////////////////
+
+
+        // region -> Helper Functions <-
+        // ----------
 
         /**
          * Get path for "base".
@@ -406,6 +498,12 @@
         getManifestFile: function() {
             return this.getAppPath(this.appInfo.manifest);
         }
+
+        // ----------
+        // endregion
+
+
+        /////////////////////////////
 
     };
 
