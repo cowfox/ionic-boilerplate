@@ -35,7 +35,7 @@
     gulp.task(taskName, function() {
 
         logger.info(taskName,
-            "Watch Mode is on!", 'Enjoy your codeing life~~ :)');
+            "Watch Mode is on!", 'Enjoy your coding life~~ :)');
 
         livereload.listen();
 

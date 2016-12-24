@@ -29,7 +29,8 @@ function onRouter($stateProvider, $urlRouterProvider) {
             views: {
                 'tab-dash': {
                     templateUrl: 'scripts/dash/templates/tab-dash.html',
-                    controller: 'dashController'
+                    controller: 'dashController',
+                    controllerAs: 'vm'
                 }
             }
         })

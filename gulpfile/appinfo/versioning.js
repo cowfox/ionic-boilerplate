@@ -47,6 +47,8 @@
     // Add
     targetFilePathArray.push(config.getManifestFile());
 
+    var isInProduction = cli.isInProduction();
+
     //----------------------------------------------------------
     // Gulp Tasks
     //----------------------------------------------------------
@@ -64,7 +66,7 @@
      * Decide which **version** to use: **Release Version** or **Dev Version**.
      */
     gulp.task('bump', function() {
-        if (cli.getEnvInfo() === 'production') {
+        if (isInProduction) {
             return bumpReleaseVersion(targetFilePathArray);
         } else {
             return bumpDevVersion(targetFilePathArray);
@@ -87,9 +89,13 @@
 
     /**
      * Bump **Dev Version**
+     *
+     * Current "cordova-config" does not support a "non-semver" version number to be written.
+     * So, "bumping a dev version" is much more like useless.
+     *
      */
     gulp.task('bump-dev', function() {
-        return bumpDevVersion(targetFilePathArray);
+        // return bumpDevVersion(targetFilePathArray);
     });
 
 
@@ -109,7 +115,7 @@
      */
     function bumpReleaseVersion(targetFilePathArray) {
 
-        var releaseVersion = _getCurrentVersion(config.versioning.version);
+        var releaseVersion = _getCurrentVersion(config.versioning.releaseVersion);
 
         // Check if the current "release version" is valid for "semver"
         if (!semver.valid(releaseVersion)) {
@@ -131,7 +137,7 @@
         }
 
         // Save the new version back to all the related files, including "manifest" file.
-        saveNewVersionToAllFiles(config.versioning.version, newVersion, targetFilePathArray);
+        saveNewVersionToAllFiles(config.versioning.releaseVersion, newVersion, targetFilePathArray);
 
         // Set it to "Cordova config.xml".
         var cordova = new cordovaConfig(config.getBasePath('./config.xml'));
@@ -154,12 +160,12 @@
     function bumpDevVersion(targetFilePathArray) {
 
         // Get the current "release" version
-        var version = _getCurrentVersion(config.versioning.version);
+        var version = _getCurrentVersion(config.versioning.releaseVersion);
         var date = dateFormat(new Date(), "yyyymmdd");
         var newDevVersion = version + '-' + date;
 
         // Save the new version back to all the related files, including "manifest" file.
-        saveNewVersionToAllFiles(config.versioning.dev, newDevVersion, targetFilePathArray);
+        saveNewVersionToAllFiles(config.versioning.devVersion, newDevVersion, targetFilePathArray);
 
         logger.info('bump-dev',
             "Bump the \"Dev\' version to:", newDevVersion);
@@ -174,11 +180,11 @@
      */
     function bumpBuildVersion(targetFilePathArray) {
 
-        var version = parseInt(_getCurrentVersion(config.versioning.build));
+        var version = parseInt(_getCurrentVersion(config.versioning.buildNumber));
         var newVersion = (version + 1).toString();
 
         // Save the new version back to all the related files, including "manifest" file.
-        saveNewVersionToAllFiles(config.versioning.build, newVersion, targetFilePathArray);
+        saveNewVersionToAllFiles(config.versioning.buildNumber, newVersion, targetFilePathArray);
 
         // Set it to "Cordova config.xml".
         var cordova = new cordovaConfig(config.getBasePath('./config.xml'));

@@ -108,7 +108,8 @@
         FACTORY: "factory",
         DIRECTIVE: "directive",
         FILTER: "filter",
-        CONSTANT: "constant"
+        CONSTANT: "constant",
+        CONFIG: "config"
     };
 
     var _REQUIRED_ELEMENTS = [
@@ -213,6 +214,11 @@
             case _ANGULAR_REGISTRATION_TYPE.CONSTANT:
                 if (typeof module.constant === 'function') {
                     module.constant(regItem.name, regItem.func);
+                }
+                break;
+            case _ANGULAR_REGISTRATION_TYPE.CONFIG:
+                if (typeof module.config === 'function') {
+                    module.config(regItem.func);
                 }
                 break;
             default:

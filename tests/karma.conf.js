@@ -8,13 +8,13 @@
  *
  * Here are some highlights:
  *
- * - `frameworks` - need to inlcude "browserify".
+ * - `frameworks` - need to include "browserify".
  * - `files` - it **only** needs to include two types of files: **unit test** files and
- * **non-CommonJS friendly library** files. If the library has been decalred in `browserify-shim`, you do not need to list here.
+ * **non-CommonJS friendly library** files. If the library has been declared in `browserify-shim`, you do not need to list here.
  * - `preprocessors` - should **only** include **unit test** files, not **app files**. All the `require()`
  * hierarchy should be from **unit test** files. In other words, you need to do `require()` on the required modules
  * inside the **unit test** files, so that Browserify can know how to do bundling.
- * - `browserify` - Be sure to inlcude `browserify-shim` as the `transform`, especially you did some declaration in `package.json` file.
+ * - `browserify` - Be sure to include `browserify-shim` as the `transform`, especially you did some declaration in `package.json` file.
  *
  *
  ***********************************************************/
@@ -61,7 +61,10 @@
             //'../node_modules/angular-mocks/angular-mocks.js',
 
             // All tests files
-            '../**/tests/**/*.unit.js'
+            '../**/tests/**/*.unit.js',
+
+            // All "directive" template files - if you need to test the directive
+            '../**/templates/directive/**/*.html'
         ],
 
 
@@ -74,6 +77,7 @@
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             '../**/tests/**/*.unit.js': ['browserify']
+            // '../**/templates/directive/**/*.html': ['ng-html2js']
         },
 
         // browserify settings
@@ -95,6 +99,34 @@
                 })
             ]
         },
+
+        /*
+         ngHtml2JsPreprocessor: {
+         // strip this from the file path
+         stripPrefix: 'public/',
+         stripSuffix: '.ext',
+         // prepend this to the
+         prependPrefix: 'app/'
+
+         // or define a custom transform function
+         // - cacheId returned is used to load template
+         //   module(cacheId) will return template at filepath
+         // cacheIdFromPath: function(filepath) {
+         //     // example strips 'public/' from anywhere in the path
+         //     // module(app/templates/template.html) => app/public/templates/template.html
+         //     var cacheId = filepath.strip('public/', '');
+         //     return cacheId;
+         // },
+
+         // - setting this option will create only a single module that contains templates
+         //   from all the files, so you can load them all with module('foo')
+         // - you may provide a function(htmlPath, originalPath) instead of a string
+         //   if you'd like to generate modules dynamically
+         //   htmlPath is a originalPath stripped and/or prepended
+         //   with all provided suffixes and prefixes
+         // moduleName: 'foo'
+         },
+         */
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
@@ -130,7 +162,8 @@
             'karma-coverage',
             'karma-htmlfile-reporter',
             'karma-phantomjs-launcher',
-            'karma-bamboo-reporter'
+            'karma-bamboo-reporter',
+            'karma-ng-html2js-preprocessor'
         ],
 
         // web server port

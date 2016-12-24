@@ -1,14 +1,14 @@
 {
     "name": "ionic-boilerplate",
     "app_id": "",
-    "build-version": "672",
+    "build-version": "888",
     "documentRoot": ".tmp",
     "gulpDependantTasks": [],
     "gulpStartupTasks": [],
     "watchPatterns": [],
-    "dev-version": "0.6.6-20160203",
-    "version": "0.7.0",
-    "description": "A project boilerplate for starting development with Ionic framework.",
+    "dev-version": "0.6.6-20161223",
+    "version": "0.8.0",
+    "description": "A project boilerplate for starting development with Ionic v1 framework.",
     "keywords": [
         "ionic",
         "boilerplate",
@@ -25,12 +25,14 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "ssh://git@stash.wuneo.co/starter/ionic-boilerplate.git"
+        "url": "https://github.com/cowfox/ionic-boilerplate"
     },
     "author": {
         "name": "Lei SHI",
         "email": "foxshee@gmail.com",
         "url": "http://5neo.be"
     },
-    "contributors": []
+    "contributors": [],
+    "appName": "Ionic Boilerplate",
+    "id": "com.wuneo.boilerplate.ionic"
 }

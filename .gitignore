@@ -16,6 +16,11 @@ plugins/
 ## Platform
 platforms/
 
+## Resources
+resources/
+resources/ios/
+resources/android/
+
 ## Log file
 *.log
 
@@ -28,7 +33,6 @@ build/
 coverage/
 jshint-output.html
 *.cache.*
-resources/
 reports/
 *.mocha.json
 
